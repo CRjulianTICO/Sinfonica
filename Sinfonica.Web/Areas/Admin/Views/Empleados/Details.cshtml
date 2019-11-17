@@ -1,0 +1,48 @@
+﻿@model Sinfonica.Web.Areas.Admin.Data.Entities.Empleado
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Empleado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreCompleto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreCompleto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Correo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Correo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Puestos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Puestos.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

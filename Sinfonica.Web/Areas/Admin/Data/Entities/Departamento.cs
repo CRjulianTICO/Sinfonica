@@ -14,5 +14,9 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
         public String Informacion { get; set; }
 
         public Boolean Estado { get; set; }
+
+        public ICollection<Catedra> Catedras { get; set; }
+
+        public ICollection<Profesor> Profesors { get; set; }
     }
 }

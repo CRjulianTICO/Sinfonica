@@ -9,6 +9,8 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
     {
         public int Id { get; set; }
 
+        public ICollection<Empleado> Empleados { get; set; }
+
         public String Nombre { get; set; }
 
         public String Informacion { get; set; }

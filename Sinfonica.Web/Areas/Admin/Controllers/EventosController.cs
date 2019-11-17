@@ -14,6 +14,7 @@ using Sinfonica.Web.Areas.Admin.Models;
 
 namespace Sinfonica.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     public class EventosController : Controller
     {
@@ -36,8 +37,8 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
         {
             //var view = from wa in this.eventosRepository.GetAll().OrderBy(a => a.Fecha) where wa.Fecha >= System.DateTime.Now select wa;
 
-
-            return View(this.eventosRepository.GetAll().OrderBy(p => p.Fecha));
+            var view = from progra in this.eventosRepository.GetAll() where progra.Estado == true select progra;
+            return View(view.OrderBy(a => a.Fecha));
         }
 
 
@@ -53,8 +54,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var evento = await _context.Eventos
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var evento = await this.eventosRepository.GetByIdAsync(id.Value);
             if (evento == null)
             {
                 return NotFound();
@@ -258,6 +258,10 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
             return View(view);
         }
 
+
+
+
+
         // GET: Eventoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -266,26 +270,35 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var evento = await _context.Eventos
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (evento == null)
+            var product = await this.eventosRepository.GetByIdAsync(id.Value);
+            if (product == null)
             {
                 return NotFound();
             }
 
-            return View(evento);
+            return View(product);
         }
+
+
+
+
 
         // POST: Eventoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var evento = await _context.Eventos.FindAsync(id);
-            _context.Eventos.Remove(evento);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var product = await this.eventosRepository.GetByIdAsync(id);
+
+            product.Estado = false;
+
+            await this.eventosRepository.UpdateAsync(product);
+            return RedirectToAction(nameof(Index)); ;
         }
+
+
+
+
 
         private bool EventoExists(int id)
         {

@@ -1,5 +1,7 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,7 +12,12 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
 
         public int Id { get; set; }
 
+        //
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Puesto Puestos { get; set; }
+        //
+        //[ForeignKey("PuestoFK")]
+        //public int PuestosId { get; set; }
 
         // public Persona Persona { get; set; }
 

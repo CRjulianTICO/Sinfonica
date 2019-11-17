@@ -31,9 +31,19 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="Admin" asp-controller="InstitucionS" asp-action="Index">Insitucion</a></li>
+                    <li><a asp-area="Admin" asp-controller="Programas" asp-action="Index">Programas</a></li>
                     <li><a asp-area="Admin" asp-controller="Eventos" asp-action="Index">Eventos</a></li>
+                    <li><a asp-area="Admin" asp-controller="Departamentos" asp-action="Index">Departamentos</a></li>
+                    <li><a asp-area="Admin" asp-controller="Puestos" asp-action="Index">Puesto</a></li>
+                    <li><a asp-area="Admin" asp-controller="Pruebas" asp-action="Index">Pruebas</a></li>
+                    <li><a asp-area="Admin" asp-controller="Directors" asp-action="Index">Director</a></li>
+                    <li><a asp-area="Admin" asp-controller="Empleados" asp-action="Index">Empleados</a></li>
+                    <li><a asp-area="Admin" asp-controller="Conjuntos" asp-action="Index">Conjuntos</a></li>
+                    <li><a asp-area="Admin" asp-controller="Costos" asp-action="Index">Costos</a></li>
+
+
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (this.User.Identity.IsAuthenticated)

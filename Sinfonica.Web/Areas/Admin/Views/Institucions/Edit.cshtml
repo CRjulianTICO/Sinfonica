@@ -1,0 +1,69 @@
+﻿@model Sinfonica.Web.Areas.Admin.Data.Entities.Institucion
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Institucion</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Bienvenida" class="control-label"></label>
+                <input asp-for="Bienvenida" class="form-control" />
+                <span asp-validation-for="Bienvenida" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Organizacion" class="control-label"></label>
+                <input asp-for="Organizacion" class="form-control" />
+                <span asp-validation-for="Organizacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Estudia" class="control-label"></label>
+                <input asp-for="Estudia" class="form-control" />
+                <span asp-validation-for="Estudia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Informacion" class="control-label"></label>
+                <input asp-for="Informacion" class="form-control" />
+                <span asp-validation-for="Informacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mision" class="control-label"></label>
+                <input asp-for="Mision" class="form-control" />
+                <span asp-validation-for="Mision" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vision" class="control-label"></label>
+                <input asp-for="Vision" class="form-control" />
+                <span asp-validation-for="Vision" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Historia" class="control-label"></label>
+                <input asp-for="Historia" class="form-control" />
+                <span asp-validation-for="Historia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Instituto" class="control-label"></label>
+                <input asp-for="Instituto" class="form-control" />
+                <span asp-validation-for="Instituto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

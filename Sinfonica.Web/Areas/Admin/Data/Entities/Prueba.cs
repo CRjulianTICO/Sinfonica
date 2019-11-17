@@ -23,6 +23,7 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
 
         public DateTime? TerceraFecha { get; set; }
 
+        public ICollection<Ingreso> Ingresos { get; set; }
 
     }
 }

@@ -91,6 +91,23 @@ namespace Sinfonica.Web.Areas.Admin.Data
 
             modelBuilder.Entity<ProfesorCurso>()
                 .HasKey(c => new { c.CursosId, c.ProfesorId });
+            /*
+            modelBuilder.Entity<Table2>().Property(e => e.Table1Id).ValueGeneratedNever();
+            modelBuilder.Entity<Table2>().Property(e => e.Key).ValueGeneratedNever();\\
+            */
+
+
+
+
+            /*
+            modelBuilder.Entity<Empleado>().Property(e => e.Puestos).ValueGeneratedNever();
+            modelBuilder.Entity<Empleado>().Property(e => e.Puestos).ValueGeneratedNever();
+            */
+
+
+
+
+            // modelBuilder.Entity<Empleado>().HasIndex(a => a.PuestosId);
 
 
             var cascadeFKs = modelBuilder.Model

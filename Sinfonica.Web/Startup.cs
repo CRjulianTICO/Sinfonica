@@ -73,6 +73,25 @@ namespace Sinfonica.Web
 
             services.AddScoped<IUserHelper, UserHelper>();
 
+            services.AddScoped<Sinfonica.Web.Areas.Admin.Data.Repositories.IInsititucionRepository, Sinfonica.Web.Areas.Admin.Data.Repositories.InstitucionRepository>();
+
+            services.AddScoped<Sinfonica.Web.Areas.Admin.Data.Repositories.IProgramaRepository, Sinfonica.Web.Areas.Admin.Data.Repositories.ProgramaRepository>();
+
+            services.AddScoped<Sinfonica.Web.Areas.Admin.Data.Repositories.IDepartamentoRepository, Sinfonica.Web.Areas.Admin.Data.Repositories.DepartamentoRepository>();
+
+            services.AddScoped<Sinfonica.Web.Areas.Admin.Data.Repositories.IPuestoRepository, Sinfonica.Web.Areas.Admin.Data.Repositories.PuestoRepository>();
+
+            services.AddScoped< Sinfonica.Web.Areas.Admin.Data.Repositories.IPruebaRepository, Sinfonica.Web.Areas.Admin.Data.Repositories.PruebaRepository> ();
+
+            services.AddScoped<Sinfonica.Web.Areas.Admin.Data.Repositories.IDirectorRepository, Sinfonica.Web.Areas.Admin.Data.Repositories.DirectorRepository>();
+
+            services.AddScoped<Sinfonica.Web.Areas.Admin.Data.Repositories.IEmpleadoRepository, Sinfonica.Web.Areas.Admin.Data.Repositories.EmpleadoRepository>();
+
+            services.AddScoped<Sinfonica.Web.Areas.Admin.Data.Repositories.IConjuntoRepository, Sinfonica.Web.Areas.Admin.Data.Repositories.ConjuntoRepository>();
+
+            services.AddScoped<ICombosHelper, CombosHelper>();
+
+
             #endregion
 
 

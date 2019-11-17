@@ -22,8 +22,7 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
 
         public Boolean Estado { get; set; }
 
-        public List<ProfesorCurso> ProfesorCursos { get; set; }
-
+        public ICollection<ProfesorCurso> ProfesorCurso { get; set; }
 
     }
 }

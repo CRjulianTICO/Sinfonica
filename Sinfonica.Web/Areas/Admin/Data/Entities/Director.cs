@@ -17,5 +17,9 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
         public bool Estado { get; set; }
         public String Informacion { get; set; }
 
+        public String NombreCompleto { get { return $"{this.Nombre} {this.PrimerApellido} {this.SegundoApellido}"; } }
+
+        public ICollection<Conjunto> Conjuntos { get; set; }
+
     }
 }

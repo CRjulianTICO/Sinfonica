@@ -590,46 +590,46 @@ namespace Sinfonica.Web.Migrations
             modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Catedra", b =>
                 {
                     b.HasOne("Sinfonica.Web.Areas.Admin.Data.Entities.Departamento", "Departamentos")
-                        .WithMany()
+                        .WithMany("Catedras")
                         .HasForeignKey("DepartamentosId");
                 });
 
             modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Conjunto", b =>
                 {
                     b.HasOne("Sinfonica.Web.Areas.Admin.Data.Entities.Director", "Director")
-                        .WithMany()
+                        .WithMany("Conjuntos")
                         .HasForeignKey("DirectorId");
                 });
 
             modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Costo", b =>
                 {
                     b.HasOne("Sinfonica.Web.Areas.Admin.Data.Entities.Programa", "Programas")
-                        .WithMany()
+                        .WithMany("Costos")
                         .HasForeignKey("ProgramasId");
                 });
 
             modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Empleado", b =>
                 {
                     b.HasOne("Sinfonica.Web.Areas.Admin.Data.Entities.Puesto", "Puestos")
-                        .WithMany()
+                        .WithMany("Empleados")
                         .HasForeignKey("PuestosId");
                 });
 
             modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Ingreso", b =>
                 {
                     b.HasOne("Sinfonica.Web.Areas.Admin.Data.Entities.Prueba", "Pruebas")
-                        .WithMany()
+                        .WithMany("Ingresos")
                         .HasForeignKey("PruebasId");
                 });
 
             modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Profesor", b =>
                 {
                     b.HasOne("Sinfonica.Web.Areas.Admin.Data.Entities.Catedra", "Catedras")
-                        .WithMany()
+                        .WithMany("Profesors")
                         .HasForeignKey("CatedrasId");
 
                     b.HasOne("Sinfonica.Web.Areas.Admin.Data.Entities.Departamento", "Departamentos")
-                        .WithMany()
+                        .WithMany("Profesors")
                         .HasForeignKey("DepartamentosId");
                 });
 
