@@ -18,6 +18,12 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
         IEnumerable<SelectListItem> GetComboDirectors();
 
+        IEnumerable<SelectListItem> GetComboCatedras();
+
         IEnumerable<SelectListItem> GetComboPruebas();
+
+        IEnumerable<SelectListItem> GetComboProfesores();
+
+        IEnumerable<SelectListItem> GetComboCursos();
     }
 }

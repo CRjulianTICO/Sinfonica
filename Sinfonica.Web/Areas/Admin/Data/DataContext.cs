@@ -123,6 +123,8 @@ namespace Sinfonica.Web.Areas.Admin.Data
             base.OnModelCreating(modelBuilder);
         }
 
+        public DbSet<Sinfonica.Web.Areas.Admin.Data.Entities.Curso> Curso { get; set; }
+
 
 
 

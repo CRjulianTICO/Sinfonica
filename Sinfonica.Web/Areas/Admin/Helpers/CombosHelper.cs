@@ -110,6 +110,26 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
         }
 
 
+
+        public IEnumerable<SelectListItem> GetComboCatedras()
+        {
+            var list = _dataContext.Catedras.Select(p => new SelectListItem
+            {
+                Text = p.NombreCatedra,
+                Value = p.Id.ToString()
+            }).OrderBy(p => p.Text).ToList();
+
+            list.Insert(0, new SelectListItem
+            {
+                Text = "(Seleccione una Catedra...)",
+                Value = "0"
+            });
+
+            return list;
+        }
+
+
+
         public IEnumerable<SelectListItem> GetComboConjuntosDelDirector(int ownerId)
         {
             var list = _dataContext.Conjuntos.Where(p => p.Director.Id == ownerId).Select(p => new SelectListItem
@@ -126,6 +146,52 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
             return list;
         }
+
+
+
+
+
+        public IEnumerable<SelectListItem> GetComboProfesores()
+        {
+            var list = _dataContext.Profesors.Select(p => new SelectListItem
+            {
+                Text = p.NombreCompleto,
+                Value = p.Id.ToString()
+            }).OrderBy(p => p.Text).ToList();
+
+            list.Insert(0, new SelectListItem
+            {
+                Text = "(Seleccione un Profesor...)",
+                Value = "0"
+            });
+
+            return list;
+        }
+
+
+
+
+        public IEnumerable<SelectListItem> GetComboCursos()
+        {
+            var list = _dataContext.Curso.Select(p => new SelectListItem
+            {
+                Text = p.NombreCurso,
+                Value = p.Id.ToString()
+            }).OrderBy(p => p.Text).ToList();
+
+            list.Insert(0, new SelectListItem
+            {
+                Text = "(Seleccione un Curso...)",
+                Value = "0"
+            });
+
+            return list;
+        }
+
+
+
+
+
 
     }
 }

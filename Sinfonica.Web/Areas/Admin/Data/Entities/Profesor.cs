@@ -29,5 +29,7 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
 
         public ICollection<ProfesorCurso> ProfesorCurso { get; set; }
 
+        public String NombreCompleto { get { return $"{this.Nombre} {this.PrimerApellido} {this.SegundoApellido}"; } }
+
     }
 }
