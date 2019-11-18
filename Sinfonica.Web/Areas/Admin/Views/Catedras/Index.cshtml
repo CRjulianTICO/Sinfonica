@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Sinfonica.Web.Areas.Admin.Data.Entities.Ingreso>
+﻿@model IEnumerable<Sinfonica.Web.Areas.Admin.Data.Entities.Catedra>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,19 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.AntesAplicar)
+                @Html.DisplayNameFor(model => model.NombreCatedra)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RequisitosNacionales)
+                @Html.DisplayNameFor(model => model.Informacion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RequisitosExtranjeros)
+                @Html.DisplayNameFor(model => model.Departamentos)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Formulario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pruebas)
+                @Html.DisplayNameFor(model => model.Estado)
             </th>
             <th></th>
         </tr>
@@ -34,19 +31,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.AntesAplicar)
+                @Html.DisplayFor(modelItem => item.NombreCatedra)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RequisitosNacionales)
+                @Html.DisplayFor(modelItem => item.Informacion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RequisitosExtranjeros)
+                @Html.DisplayFor(modelItem => item.Departamentos.NombreDepartamento)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Formulario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pruebas.Titulo)
+                @Html.DisplayFor(modelItem => item.Estado)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

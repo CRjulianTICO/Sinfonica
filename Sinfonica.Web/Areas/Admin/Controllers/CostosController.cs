@@ -169,7 +169,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                         Informacion = costo.Informacion
                     };
 
-                    _context.Update(costo);
+                    _context.Update(view);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

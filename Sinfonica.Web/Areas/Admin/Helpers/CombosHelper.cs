@@ -28,7 +28,7 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
             list.Insert(0, new SelectListItem
             {
-                Text = "[Select a pet type...]",
+                Text = "[Seleccione un puesto...]",
                 Value = "0"
             });
 
@@ -47,7 +47,7 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
             list.Insert(0, new SelectListItem
             {
-                Text = "[Select a service type...]",
+                Text = "[Seleccione un departamento...]",
                 Value = "0"
             });
 
@@ -64,12 +64,33 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
             list.Insert(0, new SelectListItem
             {
-                Text = "(Select an owner...)",
+                Text = "(Seleccioneun programa...)",
                 Value = "0"
             });
 
             return list;
         }
+
+
+        public IEnumerable<SelectListItem> GetComboPruebas()
+        {
+            var list = _dataContext.Pruebas.Select(p => new SelectListItem
+            {
+                Text = p.Titulo,
+                Value = p.Id.ToString()
+            }).OrderBy(p => p.Text).ToList();
+
+            list.Insert(0, new SelectListItem
+            {
+                Text = "(Seleccione una Prueba...)",
+                Value = "0"
+            });
+
+            return list;
+        }
+
+
+
 
         public IEnumerable<SelectListItem> GetComboDirectors()
         {
@@ -89,7 +110,7 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
         }
 
 
-        public IEnumerable<SelectListItem> GetComboPets(int ownerId)
+        public IEnumerable<SelectListItem> GetComboConjuntosDelDirector(int ownerId)
         {
             var list = _dataContext.Conjuntos.Where(p => p.Director.Id == ownerId).Select(p => new SelectListItem
             {
@@ -99,7 +120,7 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
             list.Insert(0, new SelectListItem
             {
-                Text = "(Select a pet...)",
+                Text = "(Seleccione un conjunto...)",
                 Value = "0"
             });
 

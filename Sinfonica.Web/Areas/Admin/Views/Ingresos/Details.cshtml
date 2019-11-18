@@ -34,6 +34,12 @@
         <dd>
             @Html.DisplayFor(model => model.Formulario)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pruebas)
+        </dt>
+        <dd>
+            <a asp-controller="Pruebas" asp-action="Details" asp-route-id="@Model.Pruebas.Id">@Html.DisplayFor(model => model.Pruebas.Titulo)</a>
+        </dd>
     </dl>
 </div>
 <div>

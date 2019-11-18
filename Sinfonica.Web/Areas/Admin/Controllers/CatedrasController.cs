@@ -13,32 +13,33 @@ using Sinfonica.Web.Areas.Admin.Models;
 
 namespace Sinfonica.Web.Areas.Admin.Controllers
 {
-
     [Authorize]
     [Area("Admin")]
-    public class IngresosController : Controller
+    public class CatedrasController : Controller
     {
         private readonly DataContext _context;
         private readonly ICombosHelper combosHelper;
 
-        public IngresosController(DataContext context, ICombosHelper combosHelper)
+        public CatedrasController(DataContext context, ICombosHelper combosHelper )
         {
             _context = context;
             this.combosHelper = combosHelper;
         }
 
-
-
-        // GET: Admin/Ingresos
+        // GET: Admin/Catedras
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Ingresos.Include(p => p.Pruebas).ToListAsync());
+
+            var view = from obj in await _context.Catedras.Include(a => a.Departamentos).ToListAsync() where obj.Estado == true select obj;
+
+            return View(view);
         }
 
 
 
 
-        // GET: Admin/Ingresos/Details/5
+
+        // GET: Admin/Catedras/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,31 +47,27 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var ingreso = await _context.Ingresos.Include(a => a.Pruebas)
+            var catedra = await _context.Catedras.Include(a => a.Departamentos)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (ingreso == null)
+            if (catedra == null)
             {
                 return NotFound();
             }
 
-            return View(ingreso);
+            return View(catedra);
         }
 
 
 
 
 
-
-
-
-        // GET: Admin/Ingresos/Create
+        // GET: Admin/Catedras/Create
         public IActionResult Create()
         {
 
-            var model = new IngresoViewModel{
-                Pruebs = combosHelper.GetComboPruebas()
+            var model = new CatedraViewModel {
+                Departaments = combosHelper.GetComboDepartamentos()
             };
-
             return View(model);
         }
 
@@ -79,37 +76,38 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
 
 
 
-        // POST: Admin/Ingresos/Create
+        // POST: Admin/Catedras/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(IngresoViewModel ingreso)
+        public async Task<IActionResult> Create(CatedraViewModel catedra)
         {
             if (ModelState.IsValid)
             {
 
-                var obj = new Ingreso
+                var obj = new Catedra
                 {
-                    Formulario = ingreso.Formulario,
-                    AntesAplicar = ingreso.AntesAplicar,
-                    RequisitosExtranjeros = ingreso.RequisitosExtranjeros,
-                    RequisitosNacionales= ingreso.RequisitosNacionales,
-                    Pruebas = await _context.Pruebas.FindAsync(ingreso.PruebasId)
+                    Estado = catedra.Estado,
+                    Informacion = catedra.Informacion,
+                    NombreCatedra = catedra.NombreCatedra,
+                    Departamentos = await _context.Departamentos.FindAsync(catedra.DepartamenosId)
                 };
+
 
                 _context.Add(obj);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(ingreso);
+            return View(catedra);
         }
 
 
 
 
 
-        // GET: Admin/Ingresos/Edit/5
+
+        // GET: Admin/Catedras/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -117,19 +115,21 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var ingreso = await _context.Ingresos.FindAsync(id);
 
-            var obj = new IngresoViewModel
+
+            var catedra = await _context.Catedras.FindAsync(id);
+
+
+            var obj = new CatedraViewModel
             {
-                Formulario = ingreso.Formulario,
-                AntesAplicar = ingreso.AntesAplicar,
-                RequisitosExtranjeros = ingreso.RequisitosExtranjeros,
-                RequisitosNacionales = ingreso.RequisitosNacionales,
-                Pruebs = combosHelper.GetComboPruebas()
+                NombreCatedra = catedra.NombreCatedra,
+                Departaments = combosHelper.GetComboDepartamentos(),
+                Estado = catedra.Estado,
+                Informacion = catedra.Informacion
             };
 
 
-            if (ingreso == null)
+            if (catedra == null)
             {
                 return NotFound();
             }
@@ -140,15 +140,14 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
 
 
 
-
-        // POST: Admin/Ingresos/Edit/5
+        // POST: Admin/Catedras/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,IngresoViewModel ingreso)
+        public async Task<IActionResult> Edit(int id,CatedraViewModel catedra)
         {
-            if (id != ingreso.Id)
+            if (id != catedra.Id)
             {
                 return NotFound();
             }
@@ -157,22 +156,23 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
             {
                 try
                 {
-                    var obj = new Ingreso
+                    var obj = new Catedra
                     {
-                        Formulario = ingreso.Formulario,
-                        Id = ingreso.Id,
-                        AntesAplicar = ingreso.AntesAplicar,
-                        RequisitosExtranjeros = ingreso.RequisitosExtranjeros,
-                        RequisitosNacionales = ingreso.RequisitosNacionales,
-                        Pruebas = await _context.Pruebas.FindAsync(ingreso.PruebasId)
+                        Id = catedra.Id,
+                        Estado = catedra.Estado,
+                        Informacion = catedra.Informacion,
+                        NombreCatedra = catedra.NombreCatedra,
+                        Departamentos = await _context.Departamentos.FindAsync(catedra.DepartamenosId)
                     };
+
+
 
                     _context.Update(obj);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!IngresoExists(ingreso.Id))
+                    if (!CatedraExists(catedra.Id))
                     {
                         return NotFound();
                     }
@@ -183,7 +183,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(ingreso);
+            return View(catedra);
         }
 
 
@@ -191,8 +191,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
 
 
 
-        // GET: Admin/Ingresos/Delete/5
-
+        // GET: Admin/Catedras/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -200,14 +199,14 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var ingreso = await _context.Ingresos
+            var catedra = await _context.Catedras
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (ingreso == null)
+            if (catedra == null)
             {
                 return NotFound();
             }
 
-            return View(ingreso);
+            return View(catedra);
         }
 
 
@@ -215,24 +214,25 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
 
 
 
-
-        // POST: Admin/Ingresos/Delete/5
+        // POST: Admin/Catedras/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var ingreso = await _context.Ingresos.FindAsync(id);
-            _context.Ingresos.Remove(ingreso);
+            var catedra = await _context.Catedras.FindAsync(id);
+
+            catedra.Estado = false;
+
+            _context.Catedras.Update(catedra);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
 
 
-
-        private bool IngresoExists(int id)
+        private bool CatedraExists(int id)
         {
-            return _context.Ingresos.Any(e => e.Id == id);
+            return _context.Catedras.Any(e => e.Id == id);
         }
     }
 }

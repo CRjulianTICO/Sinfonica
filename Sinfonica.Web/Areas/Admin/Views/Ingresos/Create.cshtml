@@ -1,4 +1,4 @@
-﻿@model Sinfonica.Web.Areas.Admin.Data.Entities.Ingreso
+﻿@model Sinfonica.Web.Areas.Admin.Models.IngresoViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -14,23 +14,28 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="AntesAplicar" class="control-label"></label>
-                <input asp-for="AntesAplicar" class="form-control" />
+                <textarea asp-for="AntesAplicar" class="form-control" > </textarea>
                 <span asp-validation-for="AntesAplicar" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RequisitosNacionales" class="control-label"></label>
-                <input asp-for="RequisitosNacionales" class="form-control" />
+                <textarea asp-for="RequisitosNacionales" class="form-control" > </textarea>
                 <span asp-validation-for="RequisitosNacionales" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RequisitosExtranjeros" class="control-label"></label>
-                <input asp-for="RequisitosExtranjeros" class="form-control" />
+                <textarea asp-for="RequisitosExtranjeros" class="form-control" > </textarea>
                 <span asp-validation-for="RequisitosExtranjeros" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Formulario" class="control-label"></label>
                 <input asp-for="Formulario" class="form-control" />
                 <span asp-validation-for="Formulario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PruebasId" class="control-label"></label>
+                <select asp-for="PruebasId" asp-items="Model.Pruebs" class="form-control"></select>
+                <span asp-validation-for="PruebasId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

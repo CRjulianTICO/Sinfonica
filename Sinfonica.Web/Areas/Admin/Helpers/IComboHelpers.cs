@@ -14,8 +14,10 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
         IEnumerable<SelectListItem> GetComboProgramas();
 
-        IEnumerable<SelectListItem> GetComboPets(int ownerId);
+        IEnumerable<SelectListItem> GetComboConjuntosDelDirector(int ownerId);
 
         IEnumerable<SelectListItem> GetComboDirectors();
+
+        IEnumerable<SelectListItem> GetComboPruebas();
     }
 }

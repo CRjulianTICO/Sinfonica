@@ -1,4 +1,4 @@
-﻿@model Sinfonica.Web.Areas.Admin.Data.Entities.Ingreso
+﻿@model Sinfonica.Web.Areas.Admin.Models.IngresoViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -32,6 +32,11 @@
                 <label asp-for="Formulario" class="control-label"></label>
                 <input asp-for="Formulario" class="form-control" />
                 <span asp-validation-for="Formulario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PruebasId" class="control-label"></label>
+                <select asp-for="PruebasId" asp-items="Model.Pruebs" class="form-control"></select>
+                <span asp-validation-for="PruebasId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
