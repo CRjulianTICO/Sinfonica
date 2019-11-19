@@ -1,0 +1,29 @@
+﻿@model Sinfonica.Web.Areas.Admin.Data.Entities.ProfesorCurso
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProfesorCurso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Profesors)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profesors.NombreCompleto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cursos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cursos.NombreCurso)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

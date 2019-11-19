@@ -1,0 +1,64 @@
+﻿@model Sinfonica.Web.Areas.Admin.Models.CostosViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Costo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Costo1Semestre" class="control-label"></label>
+                <input asp-for="Costo1Semestre" class="form-control" />
+                <span asp-validation-for="Costo1Semestre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Costo2Semestre" class="control-label"></label>
+                <input asp-for="Costo2Semestre" class="form-control" />
+                <span asp-validation-for="Costo2Semestre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Matricula" class="control-label"></label>
+                <input asp-for="Matricula" class="form-control" />
+                <span asp-validation-for="Matricula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaLim1Sem" class="control-label"></label>
+                <input asp-for="FechaLim1Sem" class="form-control" />
+                <span asp-validation-for="FechaLim1Sem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaLim2Sem" class="control-label"></label>
+                <input asp-for="FechaLim2Sem" class="form-control" />
+                <span asp-validation-for="FechaLim2Sem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProgramasId" class="control-label"></label>
+                <select asp-for="ProgramasId" asp-items="Model.Programs" class="form-control"></select>
+                <span asp-validation-for="ProgramasId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Informacion" class="control-label"></label>
+                <input asp-for="Informacion" class="form-control" />
+                <span asp-validation-for="Informacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

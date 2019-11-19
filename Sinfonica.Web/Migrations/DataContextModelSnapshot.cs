@@ -219,6 +219,8 @@ namespace Sinfonica.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CondigoCurso");
+
                     b.Property<bool>("Estado");
 
                     b.Property<string>("Informacion");
@@ -636,12 +638,12 @@ namespace Sinfonica.Web.Migrations
             modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.ProfesorCurso", b =>
                 {
                     b.HasOne("Sinfonica.Web.Areas.Admin.Data.Entities.Curso", "Cursos")
-                        .WithMany("ProfesorCursos")
+                        .WithMany("ProfesorCurso")
                         .HasForeignKey("CursosId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Sinfonica.Web.Areas.Admin.Data.Entities.Profesor", "Profesors")
-                        .WithMany("ProfesorCursos")
+                        .WithMany("ProfesorCurso")
                         .HasForeignKey("ProfesorId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });

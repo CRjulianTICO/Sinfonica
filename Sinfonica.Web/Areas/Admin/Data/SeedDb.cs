@@ -10,12 +10,12 @@ namespace Sinfonica.Web.Areas.Admin.Data
 {
     public class SeedDb
     {
-        private readonly UserManager<User> userManager;
+        private readonly UserManager<Sinfonica.Web.Areas.Admin.Data.Entities.User> userManager;
         private readonly DataContext context;
         private Random random;
         private readonly IUserHelper userHelper;
 
-        public SeedDb(DataContext context, UserManager<User> userManager, IUserHelper userHelper)
+        public SeedDb(DataContext context, UserManager<Sinfonica.Web.Areas.Admin.Data.Entities.User> userManager, IUserHelper userHelper)
         {
             this.context = context;
             this.random = new Random();
@@ -43,7 +43,7 @@ namespace Sinfonica.Web.Areas.Admin.Data
             var user = await this.userHelper.GetUserByEmailAsync("juan@gmail.com");
             if (user == null)
             {
-                user = new User
+                user = new Sinfonica.Web.Areas.Admin.Data.Entities.User
                 {
                     FirstName = "Juan",
                     LastName = "Zuluaga",
@@ -68,7 +68,7 @@ namespace Sinfonica.Web.Areas.Admin.Data
             var user2 = await this.userHelper.GetUserByEmailAsync("pedro@gmail.com");
             if (user2 == null)
             {
-                user2 = new User
+                user2 = new Sinfonica.Web.Areas.Admin.Data.Entities.User
                 {
                     FirstName = "Pedro",
                     LastName = "Martinez",

@@ -10,11 +10,11 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 {
     public class UserHelper : IUserHelper
     {
-        private readonly UserManager<User> userManager;
-        private readonly SignInManager<User> signInManager;
+        private readonly UserManager<Sinfonica.Web.Areas.Admin.Data.Entities.User> userManager;
+        private readonly SignInManager<Sinfonica.Web.Areas.Admin.Data.Entities.User> signInManager;
         private readonly RoleManager<IdentityRole> roleManager;
 
-        public UserHelper(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
+        public UserHelper(UserManager<Sinfonica.Web.Areas.Admin.Data.Entities.User> userManager, SignInManager<Sinfonica.Web.Areas.Admin.Data.Entities.User> signInManager, RoleManager<IdentityRole> roleManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -23,17 +23,17 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
 
 
-        public async Task<IdentityResult> AddUserAsync(User user, string password)
+        public async Task<IdentityResult> AddUserAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user, string password)
         {
             return await this.userManager.CreateAsync(user, password);
         }
 
-        public async Task<IdentityResult> ChangePasswordAsync(User user, string oldPassword, string newPassword)
+        public async Task<IdentityResult> ChangePasswordAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user, string oldPassword, string newPassword)
         {
             return await this.userManager.ChangePasswordAsync(user, oldPassword, newPassword);
         }
 
-        public async Task<User> GetUserByEmailAsync(string email)
+        public async Task<Sinfonica.Web.Areas.Admin.Data.Entities.User> GetUserByEmailAsync(string email)
         {
             return await this.userManager.FindByEmailAsync(email);
         }
@@ -52,13 +52,13 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
             await this.signInManager.SignOutAsync();
         }
 
-        public async Task<IdentityResult> UpdateUserAsync(User user)
+        public async Task<IdentityResult> UpdateUserAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user)
         {
             return await this.userManager.UpdateAsync(user);
         }
 
 
-        public async Task<SignInResult> ValidatePasswordAsync(User user, string password)
+        public async Task<SignInResult> ValidatePasswordAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user, string password)
         {
 
             return await this.signInManager.
@@ -83,12 +83,12 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
             }
         }
 
-        public async Task AddUserToRoleAsync(User user, string roleName)
+        public async Task AddUserToRoleAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user, string roleName)
         {
             await this.userManager.AddToRoleAsync(user, roleName);
         }
 
-        public async Task<bool> IsUserInRoleAsync(User user, string roleName)
+        public async Task<bool> IsUserInRoleAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user, string roleName)
         {
             return await this.userManager.IsInRoleAsync(user, roleName);
         }

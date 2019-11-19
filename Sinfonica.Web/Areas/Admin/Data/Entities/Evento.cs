@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,6 +22,32 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
         public DateTime Fecha { get; set; }
 
         public Boolean Estado { get; set; }
+
+        public string MonthName
+        {
+            get
+            {
+                String mes =  Fecha.ToString("MMMM", CultureInfo.CreateSpecificCulture("es"));
+
+                mes = char.ToUpper(mes[0]) + mes.Substring(1);
+                mes = mes.TrimEnd('.');
+
+                return mes;
+            }
+        }
+
+        public string MonthShortName
+        {
+            get
+            {
+                String mes = Fecha.ToString("MMM", CultureInfo.CreateSpecificCulture("es"));
+
+                mes = char.ToUpper(mes[0]) + mes.Substring(1);
+                mes = mes.TrimEnd('.');
+
+                return mes;
+            }
+        }
 
         [Display(Name = "Image")]
         public string ImageUrl

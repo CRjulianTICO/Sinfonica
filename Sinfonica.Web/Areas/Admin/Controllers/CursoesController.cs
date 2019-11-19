@@ -67,7 +67,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NombreCurso,Informacion,Estado")] Curso curso)
+        public async Task<IActionResult> Create([Bind("Id,NombreCurso,CondigoCurso,Informacion,Estado")] Curso curso)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NombreCurso,Informacion,Estado")] Curso curso)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NombreCurso,CondigoCurso,Informacion,Estado")] Curso curso)
         {
             if (id != curso.Id)
             {

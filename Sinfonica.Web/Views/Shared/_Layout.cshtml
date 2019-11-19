@@ -84,7 +84,7 @@
                 <!-- Logo -->
                 <div class="logo_container">
                     <div class="logo">
-                        <img src="images/logo3.png" alt="">
+                        <img src="~/images/logo3.png" alt="">
                         <span>INM</span>
                     </div>
                 </div>
@@ -93,18 +93,18 @@
                 <nav class="main_nav_container">
                     <div class="main_nav">
                         <ul class="main_nav_list">
-                            <li class="main_nav_item"><a href="index.html">inicio</a></li>
+                            <li class="main_nav_item"><a asp-area="User" asp-controller="Home" asp-action="Index">Inicio</a></li>
                             <li class="main_nav_item"><a href="#">Sobre Nosotros</a></li>
-                            <li class="main_nav_item"><a href="courses.html">courses</a></li>
+                            <li class="main_nav_item"><a asp-area="User" asp-controller="Cursoes" asp-action="Index">Cursos</a></li>
                             <li class="main_nav_item"><a href="elements.html">elements</a></li>
-                            <li class="main_nav_item"><a href="news.html">news</a></li>
+                            <li class="main_nav_item"><a asp-area="User" asp-controller="Eventos" asp-action="Index">Eventos</a></li>
                             <li class="main_nav_item"><a href="contact.html">contact</a></li>
                         </ul>
                     </div>
                 </nav>
             </div>
             <div class="header_side d-flex flex-row justify-content-center align-items-center">
-                <img src="images/phone-call.svg" alt="">
+                <img src="~/images/phone-call.svg" alt="">
                 <span>2240 0333</span>
             </div>
 
@@ -127,11 +127,11 @@
             <div class="menu_inner menu_mm">
                 <div class="menu menu_mm">
                     <ul class="menu_list menu_mm">
-                        <li class="menu_item menu_mm"><a href="index.html">Inicio</a></li>
+                        <li class="menu_item menu_mm"><a asp-area="User" asp-controller="Home" asp-action="Index">Inicio</a></li>
                         <li class="menu_item menu_mm"><a href="#">Sobre Nosotros</a></li>
-                        <li class="menu_item menu_mm"><a href="courses.html">Courses</a></li>
+                        <li class="menu_item menu_mm"><a asp-area="User" asp-controller="Cursoes" asp-action="Index">Cursos</a></li>
                         <li class="menu_item menu_mm"><a href="elements.html">Elements</a></li>
-                        <li class="menu_item menu_mm"><a href="news.html">News</a></li>
+                        <li class="menu_item menu_mm"><a asp-area="User" asp-controller="Eventos" asp-action="Index">Eventos</a></li>
                         <li class="menu_item menu_mm"><a href="contact.html">Contact</a></li>
                     </ul>
 

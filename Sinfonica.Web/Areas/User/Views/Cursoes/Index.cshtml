@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Sinfonica.Web.Areas.Admin.Data.Entities.Curso>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="popular page_section">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title text-center">
+                    <h1>Nuestros Cursos</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row course_boxes">
+
+            @foreach (var item in Model)
+            {
+                <!-- Popular Course Item -->
+                <div class="col-lg-4 course_box">
+                    <div class="card">
+                        <img class="card-img-top" src="~/images/course_4.jpg" alt="https://unsplash.com/kellybrito">
+                        <div class="card-body text-center">
+                            <div class="card-title"><a asp-action="Details" asp-route-id="@item.Id">@item.NombreCurso</a></div>
+                            <div class="card-text">@item.CondigoCurso</div>
+                        </div>
+                        <div class="price_box d-flex flex-row align-items-center">
+                            <!--<div class="course_author_image">
+                                        <img src="~/images/author.jpg" alt="https://unsplash.com/mehdizadeh">
+                                    </div>-->
+                            <div class="course_author_name">@item.Informacion</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+
+<!--
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NombreCurso)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Informacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreCurso)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Informacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    -->

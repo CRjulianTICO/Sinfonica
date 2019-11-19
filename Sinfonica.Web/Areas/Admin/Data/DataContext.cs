@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sinfonica.Web.Areas.Admin.Data
 {
-    public class DataContext : IdentityDbContext<User>
+    public class DataContext : IdentityDbContext<Sinfonica.Web.Areas.Admin.Data.Entities.User>
     {
 
 
@@ -44,7 +44,7 @@ namespace Sinfonica.Web.Areas.Admin.Data
         public DbSet<ProfesorCurso> ProfesorCursos { get; set; }
 
 
-
+        public DbSet<Sinfonica.Web.Areas.Admin.Data.Entities.Curso> Curso { get; set; }
 
 
 
@@ -123,7 +123,7 @@ namespace Sinfonica.Web.Areas.Admin.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Sinfonica.Web.Areas.Admin.Data.Entities.Curso> Curso { get; set; }
+        
 
 
 

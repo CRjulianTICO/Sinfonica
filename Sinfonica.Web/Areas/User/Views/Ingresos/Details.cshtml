@@ -1,0 +1,48 @@
+﻿@model Sinfonica.Web.Areas.Admin.Data.Entities.Ingreso
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ingreso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AntesAplicar)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AntesAplicar)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RequisitosNacionales)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RequisitosNacionales)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RequisitosExtranjeros)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RequisitosExtranjeros)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Formulario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Formulario)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pruebas)
+        </dt>
+        <dd>
+            <a asp-controller="Pruebas" asp-action="Details" asp-route-id="@Model.Pruebas.Id">@Html.DisplayFor(model => model.Pruebas.Titulo)</a>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

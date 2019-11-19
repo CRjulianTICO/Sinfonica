@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Sinfonica.Web.Areas.Admin.Data.Entities.ProfesorCurso>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Profesors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cursos)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profesors.NombreCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cursos.NombreCurso)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  IdCurso=item.Cursos.Id, IdProfesor = item.Profesors.Id }) |
+                @Html.ActionLink("Details", "Details", new { IdCurso=item.Cursos.Id, IdProfesor = item.Profesors.Id }) |
+                @Html.ActionLink("Delete", "Delete", new {  IdCurso=item.Cursos.Id, IdProfesor = item.Profesors.Id  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

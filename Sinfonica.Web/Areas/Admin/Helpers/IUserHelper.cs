@@ -10,25 +10,25 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 {
     public interface IUserHelper
     {
-        Task<User> GetUserByEmailAsync(string email);
+        Task<Sinfonica.Web.Areas.Admin.Data.Entities.User> GetUserByEmailAsync(string email);
 
-        Task<IdentityResult> AddUserAsync(User user, string password);
+        Task<IdentityResult> AddUserAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user, string password);
 
         Task<SignInResult> LoginAsync(LoginViewModel model);
 
         Task LogoutAsync();
 
-        Task<IdentityResult> UpdateUserAsync(User user);
+        Task<IdentityResult> UpdateUserAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user);
 
-        Task<IdentityResult> ChangePasswordAsync(User user, string oldPassword, string newPassword);
+        Task<IdentityResult> ChangePasswordAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user, string oldPassword, string newPassword);
 
-        Task<SignInResult> ValidatePasswordAsync(User user, string password);
+        Task<SignInResult> ValidatePasswordAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user, string password);
 
         Task CheckRoleAsync(string roleName);
 
-        Task AddUserToRoleAsync(User user, string roleName);
+        Task AddUserToRoleAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user, string roleName);
 
-        Task<bool> IsUserInRoleAsync(User user, string roleName);
+        Task<bool> IsUserInRoleAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user, string roleName);
 
     }
 }

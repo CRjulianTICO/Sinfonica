@@ -93,7 +93,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
             var user = await this.userHelper.GetUserByEmailAsync(model.Username);
             if (user == null)
             {
-                user = new User
+                user = new Sinfonica.Web.Areas.Admin.Data.Entities.User
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
