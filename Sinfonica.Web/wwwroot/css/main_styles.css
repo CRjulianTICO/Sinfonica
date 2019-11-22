@@ -434,6 +434,10 @@ section
 3.4 Hamburger
 *********************************/
 
+.container{
+	/*margin-top: 12%;*/
+}
+
 .hamburger_container
 {
 	position: absolute;
