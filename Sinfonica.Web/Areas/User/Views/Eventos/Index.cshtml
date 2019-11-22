@@ -12,64 +12,80 @@
 
 
 
+<link rel="stylesheet" type="text/css" href="~/css/events_styles.css" >
+<link rel="stylesheet" type="text/css" href="~/css/events_responsive.css">
 
-    <div class="event_items">
 
-        <!-- Event Item -->
-        <div class="events page_section">
-            <div class="container">
 
-                <div class="row">
+
+<div class="home">
+    <div class="home_background_container prlx_parent">
+        <div class="home_background prlx" style="background-image:url(/images/news_background.jpg);"></div>
+    </div>
+    <div class="home_content">
+        <h1>Eventos</h1>
+    </div>
+</div>
+
+
+
+<div class="event_items">
+
+    <!-- Event Item -->
+    <div class="events page_section">
+        <div class="container">
+
+            <div class="row">
+                <div class="col">
+                    <div class="section_title text-center">
+                        <h1>Proximos Eventos</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event_items">
+
+                <!-- Event Item -->
+                @foreach (var item in Model)
+                    {
+                <div class="row event_item">
                     <div class="col">
-                        <div class="section_title text-center">
-                            <h1>Proximos Eventos</h1>
+                        <div class="row d-flex flex-row align-items-end">
+
+                            <div class="col-lg-2 order-lg-1 order-2">
+                                <div class="event_date d-flex flex-column align-items-center justify-content-center">
+                                    <div class="event_day"> @item.Fecha.Day</div>
+                                    <div class="event_month">@item.MonthName </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 order-lg-2 order-3">
+                                <div class="event_content">
+                                    <div class="event_name"><a class="trans_200" asp-action="Details" asp-route-id="@item.Id">@item.Titulo</a></div>
+                                    <div class="event_location">@item.Encabezado</div>
+                                    <p>@item.Descripcion</p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 order-lg-3 order-1">
+                                <div class="event_image">
+                                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                            {
+                                    <img src="@Url.Content(item.ImageUrl)" alt="Image" />
+                                            }
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-
-                <div class="event_items">
-
-                    <!-- Event Item -->
-                    @foreach (var item in Model)
-                    {
-                        <div class="row event_item">
-                            <div class="col">
-                                <div class="row d-flex flex-row align-items-end">
-
-                                    <div class="col-lg-2 order-lg-1 order-2">
-                                        <div class="event_date d-flex flex-column align-items-center justify-content-center">
-                                            <div class="event_day"> @item.Fecha.Day</div>
-                                            <div class="event_month">@item.MonthName </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 order-lg-2 order-3">
-                                        <div class="event_content">
-                                            <div class="event_name"><a class="trans_200"  asp-action="Details" asp-route-id="@item.Id">@item.Titulo</a></div>
-                                            <div class="event_location">@item.Encabezado</div>
-                                            <p>@item.Descripcion</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 order-lg-3 order-1">
-                                        <div class="event_image">
-                                            @if (!string.IsNullOrEmpty(item.ImageUrl))
-                                            {
-                                                <img src="@Url.Content(item.ImageUrl)" alt="Image" />
-                                            }
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
                     }
 
-                </div>
-
             </div>
+
         </div>
     </div>
+</div>
 
 
 <!--
