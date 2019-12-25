@@ -25,6 +25,8 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
 
         public Boolean Estado { get; set; }
 
+        public Estudiante Estudiantes { get; set; }
+
         public string MonthName
         {
             get

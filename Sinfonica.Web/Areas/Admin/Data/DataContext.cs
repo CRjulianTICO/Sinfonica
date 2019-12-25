@@ -43,6 +43,14 @@ namespace Sinfonica.Web.Areas.Admin.Data
 
         public DbSet<ProfesorCurso> ProfesorCursos { get; set; }
 
+        public DbSet<Estudiante> Estudiantes { get; set; }
+
+        public DbSet<Acontecer> Acontecers { get; set; }
+
+        public DbSet<Noticia> Noticias { get; set; }
+
+
+
 
         public DbSet<Sinfonica.Web.Areas.Admin.Data.Entities.Curso> Curso { get; set; }
 

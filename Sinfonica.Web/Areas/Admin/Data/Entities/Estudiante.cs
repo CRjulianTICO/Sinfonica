@@ -17,7 +17,9 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
 
         public String NombreCompleto { get { return $"{this.Nombre} {this.PrimerApellido} {this.SegundoApellido}"; } }
 
-        public String Carnet { get; set; }                          
+        public String Carnet { get; set; }
+
+        public ICollection<Acontecer> Acontecer { get; set; }
 
     }
 }

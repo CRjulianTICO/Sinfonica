@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sinfonica.Web.Areas.Admin.Data;
 
 namespace Sinfonica.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20191225021528_LastEntitiesUpdate")]
+    partial class LastEntitiesUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,37 +129,6 @@ namespace Sinfonica.Web.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Acontecer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Descripcion");
-
-                    b.Property<string>("Encabezado");
-
-                    b.Property<bool>("Estado");
-
-                    b.Property<int?>("EstudiantesId");
-
-                    b.Property<DateTime>("Fecha");
-
-                    b.Property<string>("ImageUrl");
-
-                    b.Property<string>("Informacion");
-
-                    b.Property<string>("Lugar");
-
-                    b.Property<string>("Titulo");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EstudiantesId");
-
-                    b.ToTable("Acontecers");
                 });
 
             modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Beca", b =>
@@ -332,31 +303,6 @@ namespace Sinfonica.Web.Migrations
                     b.ToTable("Empleados");
                 });
 
-            modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Estudiante", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Carnet");
-
-                    b.Property<string>("Correo");
-
-                    b.Property<bool>("Estado");
-
-                    b.Property<string>("Nombre");
-
-                    b.Property<string>("PrimerApellido");
-
-                    b.Property<string>("SegundoApellido");
-
-                    b.Property<int>("Telefono");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Estudiantes");
-                });
-
             modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Evento", b =>
                 {
                     b.Property<int>("Id")
@@ -438,31 +384,6 @@ namespace Sinfonica.Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Institucions");
-                });
-
-            modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Noticia", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Descripcion");
-
-                    b.Property<string>("Encabezado");
-
-                    b.Property<bool>("Estado");
-
-                    b.Property<DateTime>("Fecha");
-
-                    b.Property<string>("ImageUrl");
-
-                    b.Property<string>("Informacion");
-
-                    b.Property<string>("Titulo");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Noticias");
                 });
 
             modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Profesor", b =>
@@ -668,13 +589,6 @@ namespace Sinfonica.Web.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Acontecer", b =>
-                {
-                    b.HasOne("Sinfonica.Web.Areas.Admin.Data.Entities.Estudiante", "Estudiantes")
-                        .WithMany("Acontecer")
-                        .HasForeignKey("EstudiantesId");
                 });
 
             modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Catedra", b =>
