@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace Sinfonica.Web.Areas.Admin.Models
 {
@@ -17,6 +18,10 @@ namespace Sinfonica.Web.Areas.Admin.Models
         public int PuestosId { get; set; }
 
         public IEnumerable<SelectListItem> Puestos { get; set; }
+
+
+        [Display(Name = "Image")]
+        public IFormFile ImageFile { get; set; }
 
 
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,6 +31,27 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
         public ICollection<ProfesorCurso> ProfesorCurso { get; set; }
 
         public String NombreCompleto { get { return $"{this.Nombre} {this.PrimerApellido} {this.SegundoApellido}"; } }
+
+
+        [Display(Name = "Image")]
+        public string ImageUrl
+        {
+            get;
+            set;
+        }
+
+        public string ImageFullPath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.ImageUrl))
+                {
+                    return null;
+                }
+                return $"https://xaesw.azurewebsites.net{this.ImageUrl.Substring(1)}";
+            }
+        }
+
 
     }
 }

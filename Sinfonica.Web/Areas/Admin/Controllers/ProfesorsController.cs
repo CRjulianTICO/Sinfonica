@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -90,10 +91,33 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var path = string.Empty;
+
+                if (profesor.ImageFile != null && profesor.ImageFile.Length > 0)
+                {
+
+                    var guid = Guid.NewGuid().ToString();
+                    var file = $"{guid}.jpg";
+
+                    path = Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot\\images\\Profesores",
+                        file);
+
+
+
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await profesor.ImageFile.CopyToAsync(stream);
+                    }
+
+                    path = $"~/images/Profesores/{file}";
+                }
 
                 var obj = new Profesor
                 {
                     Estado = profesor.Estado,
+                    ImageUrl = path,
                     Informacion = profesor.Informacion,
                     Correo = profesor.Correo,
                     Departamentos = await _context.Departamentos.FindAsync(profesor.DepartamenosId),
@@ -129,6 +153,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
 
             var obj = new ProfesorViewModel
             {
+                ImageUrl = profesor.ImageUrl,
                 Estado = profesor.Estado,
                 Informacion = profesor.Informacion,
                 Correo = profesor.Correo,
@@ -169,6 +194,28 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                 try
                 {
 
+                    var path = string.Empty;
+
+                    if (profesor.ImageFile != null && profesor.ImageFile.Length > 0)
+                    {
+                        var guid = Guid.NewGuid().ToString();
+                        var file = $"{guid}.jpg";
+
+                        path = Path.Combine(
+                            Directory.GetCurrentDirectory(),
+                            "wwwroot\\images\\Profesores",
+                            file);
+
+
+
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            await profesor.ImageFile.CopyToAsync(stream);
+                        }
+
+                        path = $"~/images/Profesores/{file}";
+                    }
+
 
                     var obj = new Profesor
                     {
@@ -181,7 +228,8 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                         Nombre = profesor.Nombre,
                         PrimerApellido = profesor.PrimerApellido,
                         SegundoApellido = profesor.SegundoApellido,
-                        Telefono = profesor.Telefono
+                        Telefono = profesor.Telefono,
+                        ImageUrl = path
                     };
                     _context.Update(obj);
                     await _context.SaveChangesAsync();

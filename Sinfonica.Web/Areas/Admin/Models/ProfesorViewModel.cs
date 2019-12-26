@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Sinfonica.Web.Areas.Admin.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -24,5 +25,9 @@ namespace Sinfonica.Web.Areas.Admin.Models
         public int DepartamenosId { get; set; }
 
         public IEnumerable<SelectListItem> Departaments { get; set; }
+
+
+        [Display(Name = "Image")]
+        public IFormFile ImageFile { get; set; }
     }
 }
