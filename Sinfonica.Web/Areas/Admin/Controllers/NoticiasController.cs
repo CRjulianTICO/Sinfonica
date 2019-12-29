@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using Sinfonica.Web.Areas.Admin.Models;
 
 namespace Sinfonica.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     public class NoticiasController : Controller
     {

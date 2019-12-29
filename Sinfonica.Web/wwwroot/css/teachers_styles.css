@@ -188,6 +188,29 @@ section
 	position: relative;
 	box-sizing: border-box;
 }
+.container_login label p a
+	
+{
+	
+       margin-left: 40%;
+	
+       margin-top: 25%;
+	
+       font-size: 350%;
+	
+}
+	
+.container-form	
+{
+	
+       color:#fff;
+	
+       margin-left: 30%;
+	
+       margin-top: 10%;
+	
+}
+
 .clear
 {
 	clear: both;
@@ -443,7 +466,7 @@ section
 	width: 50vw;
 	height: 100vh;
 	background: #FFFFFF;
-	z-index: 12;
+	z-index: 10;
 	-webkit-transition: all 0.6s ease;
 	-moz-transition: all 0.6s ease;
 	-ms-transition: all 0.6s ease;

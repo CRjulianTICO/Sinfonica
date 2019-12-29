@@ -2,82 +2,68 @@
 
 @{
     ViewData["Title"] = "Index";
+
+
+    Layout = "_Layout";
 }
 
-<h2>Index</h2>
+<link rel="stylesheet" type="text/css" href="~/css/teachers_styles.css">
+<link rel="stylesheet" type="text/css" href="~/css/teachers_responsive.css">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PrimerApellido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SegundoApellido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefono)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Correo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Departamentos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Catedras)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Informacion)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrimerApellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SegundoApellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Correo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Departamentos.NombreDepartamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Catedras.NombreCatedra)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Informacion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<!-- Home -->
+
+<div class="home">
+    <div class="home_background_container prlx_parent">
+        <div class="home_background prlx" style="background-image:url(/images/teachers_background.jpg)"></div>
+    </div>
+    <div class="home_content">
+        <h1>Profesores</h1>
+    </div>
+</div>
+
+
+
+<!-- Teachers -->
+
+<div class="teachers page_section">
+    <div class="container">
+        <div class="row">
+
+
+
+            <!-- Teacher -->
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 teacher">
+                    <div class="card" >
+                        <div class="card_img" >
+                           
+
+                            @if (!string.IsNullOrEmpty(item.ImageUrl))
+                            {
+                                <img class="card-img-top trans_200" src="@Url.Content(item.ImageUrl)" alt="https://unsplash.com/michaeldam">
+                                
+                            }
+
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="card-title"><a href="#">@item.NombreCompleto</a></div>
+                            <div class="card-text">@item.Departamentos.NombreDepartamento</div>
+                            <div class="teacher_social">
+                                <ul class="menu_social">
+                                    <li class="menu_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                                    <li class="menu_social_item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li class="menu_social_item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li class="menu_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li class="menu_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            </div>
+    </div>
+</div>
+

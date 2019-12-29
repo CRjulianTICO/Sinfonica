@@ -18,14 +18,17 @@ namespace Sinfonica.Web.Areas.User.Controllers
     public class ProfesorsController : Controller
     {
         private readonly DataContext _context;
-        private readonly ICombosHelper combosHelper;
-        private readonly IConvertEntity convertEntity;
+       /* private readonly ICombosHelper combosHelper;
+        private readonly IConvertEntity convertEntity;*/
 
-        public ProfesorsController(DataContext context, ICombosHelper combosHelper, IConvertEntity convertEntity)
+        public ProfesorsController(DataContext context/*, ICombosHelper combosHelper, IConvertEntity convertEntity*/)
         {
             _context = context;
-            this.combosHelper = combosHelper;
+
+          /*  
+           *  this.combosHelper = combosHelper;
             this.convertEntity = convertEntity;
+            */
         }
 
 

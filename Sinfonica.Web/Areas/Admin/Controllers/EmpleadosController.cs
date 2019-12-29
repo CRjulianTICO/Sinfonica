@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -80,6 +81,30 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var path = string.Empty;
+
+                if (empleado.ImageFile != null && empleado.ImageFile.Length > 0)
+                {
+
+                    var guid = Guid.NewGuid().ToString();
+                    var file = $"{guid}.jpg";
+
+                    path = Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot\\images\\Empleados",
+                        file);
+
+
+
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await empleado.ImageFile.CopyToAsync(stream);
+                    }
+
+                    path = $"~/images/Empleados/{file}";
+                }
+
+
 
                 var emp = new Empleado {
                     Nombre = empleado.Nombre,
@@ -88,6 +113,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                     Correo = empleado.Correo,
                     Telefono = empleado.Telefono,
                     Estado = empleado.Estado,
+                    ImageUrl = path,
                     Puestos = await _context.Puestos.FindAsync(empleado.PuestosId)
                 };
 
@@ -97,6 +123,9 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
             }
             return View(empleado);
         }
+
+
+
 
 
 
@@ -122,7 +151,8 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                 Telefono = empleado.Telefono,
                 PrimerApellido = empleado.PrimerApellido,
                 SegundoApellido = empleado.SegundoApellido,
-                Puestos = combosHelper.GetComboPuestos()
+                Puestos = combosHelper.GetComboPuestos(),
+                ImageUrl = empleado.ImageUrl
             };
             return View(view);
         }
@@ -147,15 +177,38 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
 
+                var path = string.Empty;
+
+                if (empleado.ImageFile != null && empleado.ImageFile.Length > 0)
+                {
+                    var guid = Guid.NewGuid().ToString();
+                    var file = $"{guid}.jpg";
+
+                    path = Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot\\images\\Empleados",
+                        file);
+
+
+
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await empleado.ImageFile.CopyToAsync(stream);
+                    }
+
+                    path = $"~/images/Empleados/{file}";
+                }
+
                 var emp = new Empleado
                 {
+                    Id =empleado.Id,
                     Nombre = empleado.Nombre,
-                    Id=empleado.Id,
                     PrimerApellido = empleado.PrimerApellido,
                     SegundoApellido = empleado.SegundoApellido,
                     Correo = empleado.Correo,
                     Telefono = empleado.Telefono,
                     Estado = empleado.Estado,
+                    ImageUrl = path,
                     Puestos = await _context.Puestos.FindAsync(empleado.PuestosId)
                 };
 
