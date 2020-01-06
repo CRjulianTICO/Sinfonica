@@ -51,13 +51,15 @@
                 <div class="row">
 
                     <div class="col-lg-4 hero_box_col">
-                        <div class="hero_box d-flex flex-row align-items-center justify-content-start">
-                            <img src="images/earth-globe.svg" class="svg" alt="">
-                            <div class="hero_box_content">
-                                <h2 class="hero_box_title">Nuestros Cursos</h2>
-                                <a  class="hero_box_link" asp-area="User" asp-controller="Crusoes" asp-action="Index">view more</a>
+                        <a asp-area="User" asp-controller="Crusoes" asp-action="Index">
+                            <div class="hero_box d-flex flex-row align-items-center justify-content-start">
+                                <img src="images/earth-globe.svg" class="svg" alt="">
+                                <div class="hero_box_content">
+                                    <h2 class="hero_box_title">Nuestros Cursos</h2>
+                                    <a class="hero_box_link" >view more</a>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
                     <div class="col-lg-4 hero_box_col">
@@ -71,13 +73,17 @@
                     </div>
 
                     <div class="col-lg-4 hero_box_col">
-                        <div class="hero_box d-flex flex-row align-items-center justify-content-start">
-                            <img src="images/professor.svg" class="svg" alt="">
-                            <div class="hero_box_content">
-                                <h2 class="hero_box_title">Nuestros Profesores</h2>
-                                <a class="hero_box_link" asp-area="User" asp-controller="Profesors" asp-action="Index">Ver mas</a>
-                            </div>
+                        
+                        <div class="hero_box d-flex flex-row align-items-center justify-content-start" >
+                            <a asp-area="User" asp-controller="Profesors" asp-action="Index">
+                                <img src="images/professor.svg" class="svg" alt="" asp-area="User" asp-controller="Profesors" asp-action="Index">
+                                <div class="hero_box_content">
+                                    <h2 class="hero_box_title">Nuestros Profesores</h2>
+                                    <a class="hero_box_link" asp-area="User" asp-controller="Profesors" asp-action="Index">Ver mas</a>
+                                </div>
+                            </a>
                         </div>
+                        
                     </div>
 
                 </div>

@@ -40,6 +40,16 @@
                 @Html.DisplayNameFor(model => model.Informacion)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Carrera)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estudios)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaNacimiento)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ImageUrl)
             </th>
             <th></th>
@@ -74,6 +84,15 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Informacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carrera)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estudios)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
             </td>
             <td>
                 @if (!string.IsNullOrEmpty(item.ImageUrl))

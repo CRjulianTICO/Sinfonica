@@ -125,7 +125,10 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                     Nombre = profesor.Nombre,
                     PrimerApellido = profesor.PrimerApellido,
                     SegundoApellido  = profesor.SegundoApellido,
-                    Telefono = profesor.Telefono
+                    Telefono = profesor.Telefono,
+                    Carrera = profesor.Carrera,
+                    Estudios = profesor.Estudios,
+                    FechaNacimiento = profesor.FechaNacimiento
                 };
 
 
@@ -162,7 +165,10 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                 Nombre = profesor.Nombre,
                 PrimerApellido = profesor.PrimerApellido,
                 SegundoApellido = profesor.SegundoApellido,
-                Telefono = profesor.Telefono
+                Telefono = profesor.Telefono,
+                Carrera = profesor.Carrera,
+                Estudios = profesor.Estudios,
+                FechaNacimiento = profesor.FechaNacimiento
             };
 
 
@@ -229,7 +235,10 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                         PrimerApellido = profesor.PrimerApellido,
                         SegundoApellido = profesor.SegundoApellido,
                         Telefono = profesor.Telefono,
-                        ImageUrl = path
+                        ImageUrl = path,
+                        Carrera = profesor.Carrera,
+                        Estudios = profesor.Estudios,
+                        FechaNacimiento = profesor.FechaNacimiento
                     };
                     _context.Update(obj);
                     await _context.SaveChangesAsync();

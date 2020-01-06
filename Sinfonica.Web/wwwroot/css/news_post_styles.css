@@ -798,22 +798,27 @@ section
 }
 .news_post_title_container
 {
+
 	padding-left: 31px;
 	color: #000000;
 	margin-top: -7px;
 }
+
 .news_post_title a
 {
+
 	font-size: 36px;
 	font-weight: 500;
 	line-height: 1.2;
 	color: #000000;
 }
+
+
 .news_post_title a:hover,
 .news_post_author a:hover,
 .news_post_comments a:hover
 {
-	color: #a5a5a5;
+	color: #000000;
 }
 .news_post_meta
 {
