@@ -18,7 +18,8 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
         public IEnumerable<SelectListItem> GetComboPuestos()
         {
-            var list = _dataContext.Puestos.Select(pt => new SelectListItem
+            var al = from obj in _dataContext.Puestos.ToList() where obj.Estado == true select obj;
+            var list = al.Select(pt => new SelectListItem
             {
                 Text = pt.Nombre,
                 Value = $"{pt.Id}"
@@ -37,13 +38,19 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
         public IEnumerable<SelectListItem> GetComboDepartamentos()
         {
-            var list = _dataContext.Departamentos.Select(pt => new SelectListItem
+
+            var al = from obj in _dataContext.Departamentos.ToList() where obj.Estado == true select obj;
+
+            var list = al.Select(pt => new SelectListItem
             {
+                
                 Text = pt.NombreDepartamento,
                 Value = $"{pt.Id}"
             })
                 .OrderBy(pt => pt.Text)
                 .ToList();
+                       
+
 
             list.Insert(0, new SelectListItem
             {
@@ -51,12 +58,17 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
                 Value = "0"
             });
 
+            
+
+
             return list;
         }
 
         public IEnumerable<SelectListItem> GetComboProgramas()
         {
-            var list = _dataContext.Programas.Select(p => new SelectListItem
+
+            var al = from obj in _dataContext.Programas.ToList() where obj.Estado == true select obj;
+            var list = al.Select(p => new SelectListItem
             {
                 Text = p.Nombre,
                 Value = p.Id.ToString()
@@ -74,7 +86,8 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
         public IEnumerable<SelectListItem> GetComboPruebas()
         {
-            var list = _dataContext.Pruebas.Select(p => new SelectListItem
+            var al = _dataContext.Pruebas.ToList();
+            var list = al.Select(p => new SelectListItem
             {
                 Text = p.Titulo,
                 Value = p.Id.ToString()
@@ -94,7 +107,9 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
         public IEnumerable<SelectListItem> GetComboDirectors()
         {
-            var list = _dataContext.Directors.Select(p => new SelectListItem
+            var al = from obj in _dataContext.Directors.ToList() where obj.Estado == true select obj;
+
+            var list = al.Select(p => new SelectListItem
             {
                 Text = p.Nombre,
                 Value = p.Id.ToString()
@@ -113,7 +128,9 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
         public IEnumerable<SelectListItem> GetComboCatedras()
         {
-            var list = _dataContext.Catedras.Select(p => new SelectListItem
+
+            var al = from obj in _dataContext.Catedras.ToList() where obj.Estado == true select obj;
+            var list = al.Select(p => new SelectListItem
             {
                 Text = p.NombreCatedra,
                 Value = p.Id.ToString()
@@ -132,7 +149,8 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
         public IEnumerable<SelectListItem> GetComboConjuntosDelDirector(int ownerId)
         {
-            var list = _dataContext.Conjuntos.Where(p => p.Director.Id == ownerId).Select(p => new SelectListItem
+            var al = from obj in _dataContext.Conjuntos.ToList() where obj.Estado == true select obj;
+            var list = al.Where(p => p.Director.Id == ownerId).Select(p => new SelectListItem
             {
                 Text = p.NombreConjunto,
                 Value = p.Id.ToString()
@@ -153,7 +171,8 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
         public IEnumerable<SelectListItem> GetComboProfesores()
         {
-            var list = _dataContext.Profesors.Select(p => new SelectListItem
+            var al = from obj in _dataContext.Profesors.ToList() where obj.Estado == true select obj;
+            var list = al.Select(p => new SelectListItem
             {
                 Text = p.NombreCompleto,
                 Value = p.Id.ToString()
@@ -173,7 +192,7 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
         public IEnumerable<SelectListItem> GetComboCursos()
         {
-            var list = _dataContext.Curso.Select(p => new SelectListItem
+            var list = _dataContext.Curso.Where(p => p.Estado == true).Select(p => new SelectListItem
             {
                 Text = p.NombreCurso,
                 Value = p.Id.ToString()

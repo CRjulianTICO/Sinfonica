@@ -86,6 +86,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
 
+
                 var obj = new Catedra
                 {
                     Estado = catedra.Estado,
