@@ -19,21 +19,30 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
         public Catedra Catedras { get; set; }
 
         public Departamento Departamentos { get; set; }
-
+        [Required]
         public string Nombre { get; set; }
+        [Required]
         public string PrimerApellido { get; set; }
+        [Required]
         public string SegundoApellido { get; set; }
+        [Required]
         public int Telefono { get; set; }
+        [Required]
         public string Correo { get; set; }
+        [Required]
         public bool Estado { get; set; }
+        [Required]
         public String Informacion { get; set; }
+        [Required]
         public String  Estudios { get; set; }
 
 
         [Display(Name = "Trayectoria")]
+        [Required]
         public String  Carrera { get; set; }
 
         [Display(Name = "Fecha de Nacimiento: (MM/DD/AAAA)")]
+        [Required]
         public DateTime FechaNacimiento { get; set; }
 
 

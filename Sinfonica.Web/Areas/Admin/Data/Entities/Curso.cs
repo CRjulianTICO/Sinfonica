@@ -16,15 +16,15 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
         }*/
 
         public int Id { get; set; }
-
+        [Required]
         public String NombreCurso { get; set; }
-
+        [Required]
         [Display(Name ="Codigo del Curso")]
         public String CondigoCurso { get; set; }
 
-
+        [Required]
         public String Informacion { get; set; }
-
+        [Required]
         public Boolean Estado { get; set; }
 
         public ICollection<ProfesorCurso> ProfesorCurso { get; set; }
