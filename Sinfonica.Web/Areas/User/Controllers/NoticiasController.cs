@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Sinfonica.Web.Areas.Admin.Data;
 using Sinfonica.Web.Areas.Admin.Data.Entities;
 using Sinfonica.Web.Areas.Admin.Models;
+using Sinfonica.Web.Areas.User.Pagination;
 
 namespace Sinfonica.Web.Areas.User.Controllers
 {
@@ -22,14 +23,37 @@ namespace Sinfonica.Web.Areas.User.Controllers
         public NoticiasController(DataContext context)
         {
             _context = context;
+           
         }
 
         // GET: Admin/Noticias
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? pageNumber, string sortOrder, string currentFilter, string searchString)
         {
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
 
-            var view = from progra in await _context.Noticias.ToListAsync() where progra.Estado == true select progra;
-            return View(view);
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+
+            var viewp = from progra in  _context.Noticias where progra.Estado == true select progra;
+
+
+
+            int pageSize = 3;
+
+            
+            return View(await PaginatedList<Noticia>.CreateAsync(viewp.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Admin/Noticias/Details/5
