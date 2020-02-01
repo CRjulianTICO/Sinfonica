@@ -14,7 +14,7 @@ using Sinfonica.Web.Areas.User.Pagination;
 
 namespace Sinfonica.Web.Areas.User.Controllers
 {
-    [Authorize]
+    
     [Area("User")]
     public class NoticiasController : Controller
     {
@@ -47,14 +47,14 @@ namespace Sinfonica.Web.Areas.User.Controllers
 
 
             var viewp = from progra in  _context.Noticias where progra.Estado == true select progra;
-
+            viewp = viewp.OrderByDescending(a => a.Fecha);
 
 
             int pageSize = 3;
 
             
             return View(await PaginatedList<Noticia>.CreateAsync(viewp.AsNoTracking(), pageNumber ?? 1, pageSize));
-        }
+        }   
 
         // GET: Admin/Noticias/Details/5
         public async Task<IActionResult> Details(int? id)
