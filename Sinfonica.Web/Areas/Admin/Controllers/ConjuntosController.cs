@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -97,13 +98,40 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
 
+                
+
+                var path = string.Empty;
+
+                if (conjunto.ImageFile != null && conjunto.ImageFile.Length > 0)
+                {
+                    var guid = Guid.NewGuid().ToString();
+                    var file = $"{guid}.jpg";
+
+                    path = Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot\\images\\Conjunto",
+                        file);
+
+
+
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await conjunto.ImageFile.CopyToAsync(stream);
+                    }
+
+                    path = $"~/images/Conjunto/{file}";
+                }
+
+
                 var emp = new Conjunto
                 {
                     NombreConjunto = conjunto.NombreConjunto,
                     Informacion = conjunto.Informacion,
                     Estado = conjunto.Estado,
+                    ImageUrl = path,
                     Director = await _context.Directors.FindAsync(conjunto.DirectorsId)
                 };
+
 
                 //Console.WriteLine("*****"+emp.Director);
 
@@ -128,19 +156,38 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
+
+
+
+
+
             var conjunto = await _context.Conjuntos.FindAsync(id);
+
+
+
+
+
             if (conjunto == null)
             {
                 return NotFound();
             }
+
+
+
             var view = new ConjuntoViewModel
             {
                 NombreConjunto = conjunto.NombreConjunto,
                 Id = conjunto.Id,
                 Estado = conjunto.Estado,
+                ImageUrl = conjunto.ImageUrl,
                 Informacion = conjunto.Informacion,
                 Directors = comboHelper.GetComboDirectors()
             };
+
+
+
+
+
             return View(view);
         }
 
@@ -168,14 +215,45 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
 
+
+
+
+                var path = string.Empty;
+
+                if (conjunto.ImageFile != null && conjunto.ImageFile.Length > 0)
+                {
+                    var guid = Guid.NewGuid().ToString();
+                    var file = $"{guid}.jpg";
+
+                    path = Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot\\images\\Conjunto",
+                        file);
+
+
+
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await conjunto.ImageFile.CopyToAsync(stream);
+                    }
+
+                    path = $"~/images/Conjunto/{file}";
+                }
+
+
+
+
                 var emp = new Conjunto
                 {
-                    Id = conjunto.Id,
                     NombreConjunto = conjunto.NombreConjunto,
                     Informacion = conjunto.Informacion,
                     Estado = conjunto.Estado,
+                    ImageUrl = path,
                     Director = await _context.Directors.FindAsync(conjunto.DirectorsId)
                 };
+
+
+
 
                 _context.Conjuntos.Update(emp);
 

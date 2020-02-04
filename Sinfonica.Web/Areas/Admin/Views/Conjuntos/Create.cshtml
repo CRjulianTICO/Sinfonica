@@ -22,7 +22,12 @@
                 </div>
                 <div class="box-body">
 
-                   <form asp-action="Create">
+
+<h4>Conjunto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="NombreConjunto" class="control-label"></label>
@@ -45,6 +50,12 @@
                         <input asp-for="Estado" /> @Html.DisplayNameFor(model => model.Estado)
                     </label>
                 </div>
+            </div>
+            <div class="form-group">
+
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" class="form-control" type="file" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary btn-block" />
