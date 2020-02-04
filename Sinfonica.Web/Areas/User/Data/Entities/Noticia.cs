@@ -5,9 +5,9 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Sinfonica.Web.Areas.Admin.Data.Entities
+namespace Sinfonica.Web.Areas.User.Data.Entities
 {
-    public class Acontecer : IEntity
+    public class Noticia : IEntity
     {
         public int Id { get; set; }
         [Required]
@@ -19,13 +19,9 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
         [Required]
         public String Descripcion { get; set; }
         [Required]
-        public String Lugar { get; set; }
-        [Required]
         public DateTime Fecha { get; set; }
         [Required]
         public Boolean Estado { get; set; }
-
-        public Estudiante Estudiantes { get; set; }
 
         public string MonthName
         {
@@ -74,3 +70,4 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
 
     }
 }
+

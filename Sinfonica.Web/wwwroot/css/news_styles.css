@@ -875,7 +875,7 @@ section
 .news_page_nav ul li
 {
 	display: inline-block;
-	width: 43px;
+	width: 100px;
 	height: 43px;
 	background: #d2d2d2;
 	margin-right: 3px;
@@ -895,6 +895,13 @@ section
 	font-weight: 500;
 	color: #FFFFFF;
 	line-height: 43px;
+}
+
+
+
+.not-active {
+  pointer-events: none;
+  cursor: default;
 }
 
 /*********************************

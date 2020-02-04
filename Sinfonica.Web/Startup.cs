@@ -95,7 +95,7 @@ namespace Sinfonica.Web
             #endregion
 
 
-
+            services.AddScoped<Sinfonica.Web.Areas.User.Data.Repositories.IDirectorRepository, Sinfonica.Web.Areas.User.Data.Repositories.DirectorRepository>();
 
 
 

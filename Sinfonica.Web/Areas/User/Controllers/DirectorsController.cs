@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Sinfonica.Web.Areas.Admin.Data;
-using Sinfonica.Web.Areas.User.Data.Entities;
-using Sinfonica.Web.Areas.User.Data.Repositories;
-using Sinfonica.Web.Areas.User.Helpers;
+using Sinfonica.Web.Areas.Admin.Data.Repositories;
+using Sinfonica.Web.Areas.Admin.Data.Entities;
+using Sinfonica.Web.Areas.Admin.Helpers;
 
 namespace Sinfonica.Web.Areas.User.Controllers
 {
@@ -31,8 +31,38 @@ namespace Sinfonica.Web.Areas.User.Controllers
         // GET: Admin/Directors
         public async Task<IActionResult> Index()
         {
-            var view = from progra in this.directorRepository.GetAll() where progra.Estado == true select progra;
-            return View(view.OrderBy(a => a.Nombre));
+
+            var view = from progra in this.directorRepository.GetAll().Include(a => a.Conjuntos) where progra.Estado == true  select progra;
+
+            var questionnaire = _context.Directors
+                                            .Select(n => new Director
+                                            {
+                                                Id = n.Id,
+                                                Nombre = n.Nombre,
+                                                PrimerApellido = n.PrimerApellido,
+                                                SegundoApellido = n.SegundoApellido,
+                                                Carrera = n.Carrera,
+                                                Correo = n.Correo,
+                                                Estudios = n.Estudios,
+                                                FechaNacimiento = n.FechaNacimiento,
+                                                ImageUrl = n.ImageUrl,
+                                                Informacion = n.Informacion,
+                                                Telefono = n.Telefono,
+                                                Estado = n.Estado,
+
+
+                                                Conjuntos = n.Conjuntos.Where(p => p.Estado == true).ToList()
+
+                                                
+
+
+
+                                            });
+
+
+
+            // return View(view.OrderBy(a => a.Nombre));
+            return View(questionnaire);
         }
 
 
@@ -45,13 +75,38 @@ namespace Sinfonica.Web.Areas.User.Controllers
                 return new NotFoundViewResult("DirectorNotFound");
             }
 
-            var de = await this.directorRepository.GetByIdAsync(id.Value);
-            if (de == null)
+            var profesor = await _context.Directors.Include(c => c.Conjuntos).FirstOrDefaultAsync(m => m.Id == id);
+            var questionnaires = _context.Directors
+                                           .Select(n => new Director
+                                           {
+                                               Id = n.Id,
+                                               Nombre = n.Nombre,
+                                               PrimerApellido = n.PrimerApellido,
+                                               SegundoApellido = n.SegundoApellido,
+                                               Carrera = n.Carrera,
+                                               Correo = n.Correo,
+                                               Estudios = n.Estudios,
+                                               FechaNacimiento = n.FechaNacimiento,
+                                               ImageUrl = n.ImageUrl,
+                                               Informacion = n.Informacion,
+                                               Telefono = n.Telefono,
+                                               Estado = n.Estado,
+
+
+                                               Conjuntos = n.Conjuntos.Where(p => p.Estado == true).ToList()
+
+                                            
+
+
+                                           }).FirstOrDefaultAsync(m => m.Id == id);
+
+
+            if (profesor == null)
             {
                 return new NotFoundViewResult("DirectorNotFound");
             }
 
-            return View(de);
+            return View(profesor);
         }
 
         // GET: Admin/Directors/Create

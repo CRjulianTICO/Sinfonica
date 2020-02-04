@@ -4,57 +4,450 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<link rel="stylesheet" type="text/css" href="~/css/profile_styles.css">
+<link rel="stylesheet" type="text/css" href="~/css/profile_responsive.css">
 
-<div>
-    <h4>Director</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PrimerApellido)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PrimerApellido)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SegundoApellido)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SegundoApellido)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Correo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Correo)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Informacion)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Informacion)
-        </dd>
-    </dl>
+
+
+
+
+<!-- Home -->
+
+
+
+
+
+
+
+
+
+<div class="home">
+    <div class="home_background_container prlx_parent">
+        <div class="home_background prlx" style="background-image:url(/images/search_background.jpg)"></div>
+    </div>
+    <div class="home_content">
+        <h1>Director </h1>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+
+
+
+
+
+<!-- News -->
+
+<div class="news">
+    <div class="container">
+        <div class="row">
+
+
+
+            <!-- News Post Column -->
+
+            <div class="col-lg-8">
+
+                <div class="news_post_container">
+                    <!-- News Post -->
+                    <div class="news_post">
+                        <div class="news_post_image">
+                            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                            {
+                                <img src="@Url.Content(Model.ImageUrl)" alt="Image" />
+                            }
+                        </div>
+                        <div class="news_post_top d-flex flex-column flex-sm-row">
+
+
+                            <!--
+                                                            <div class="news_post_date_container">
+                                                                <div class="news_post_date d-flex flex-column align-items-center justify-content-center">
+                                                                    <div>18</div>
+                                                                    <div>dec</div>
+                                                                </div>
+                                                            </div>
+
+                            -->
+
+
+                            <div class="news_post_title_container">
+                                <div class="news_post_title">
+                                    <a style="color: #000;">@Html.DisplayFor(model => model.NombreCompleto)</a>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <br />
+                        <br />
+                        <br />
+                        <h2 style="color: #000;">Estudio</h2>
+
+                        <p class="news_post_text" style="margin-top: 59px;">
+                            @Html.DisplayFor(model => model.Estudios)
+                        </p>
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+
+
+                        <h2 style="color: #000;">Trayectoria</h2>
+                        <p class="news_post_text" style="margin-top: 59px;">
+                            @Html.DisplayFor(model => model.Carrera)
+                        </p>
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+
+                        <h2 style="color: #000;">Informacion</h2>
+                        <p class="news_post_text" style="margin-top: 59px;">
+
+                            @Html.DisplayFor(model => model.Informacion)
+
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Comments -->
+                <div class="news_post_comments">
+                    <div class="comments_title"></div>
+                    <ul class="comments_list">
+
+                        <!-- Comment -->
+                        <li class="comment">
+                            <div class="comment_container d-flex flex-row">
+                                <div>
+                                    <div class="comment_image">
+
+                                    </div>
+                                </div>
+                                <div class="comment_content">
+                                    <div class="comment_meta">
+
+                                    </div>
+                                    <p class="comment_text"> </p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Comment -->
+                        <li class="comment">
+                            <div class="comment_container d-flex flex-row">
+                                <div>
+                                    <div class="comment_image">
+                                        <!--<img src="images/comment_2.jpg" alt="">-->
+                                    </div>
+                                </div>
+                                <div class="comment_content">
+                                    <div class="comment_meta">
+
+                                    </div>
+                                    <p class="comment_text">
+                                </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <!-- Leave Comment -->
+
+                <div class="leave_comment">
+                    <div class="leave_comment_title"></div>
+
+                    <div class="leave_comment_form_container">
+
+
+                        <!--
+                            <form action="post">
+                                <input id="comment_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
+                                <input id="comment_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
+                                <textarea id="comment_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
+                                <button id="comment_send_btn" type="submit" class="comment_send_btn trans_200" value="Submit">send message</button>
+                            </form>
+
+
+                        -->
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <!-- Sidebar Column -->
+
+            <div class="col-lg-4">
+                <div class="sidebar">
+
+                    <!-- Archives -->
+                    <div class="sidebar_section">
+                        <div class="sidebar_section_title">
+                            <h3>Datos</h3>
+                        </div>
+                        <ul class="sidebar_list">
+
+                            @foreach (var item in Model.Conjuntos.Where(a => a.Estado==true))
+                            {
+                                <li class="sidebar_list_item"><a> Conjunto: @item.NombreConjunto </a></li>
+                            }
+
+
+                            <li class="sidebar_list_item"><a>@Html.DisplayNameFor(model => model.Correo): @Html.DisplayFor(model => model.Correo)</a></li>
+                            <li class="sidebar_list_item"><a>Fecha Nacimiento:@Html.DisplayFor(model => model.FechaNacimiento.Date.Day)/@Html.DisplayFor(model => model.FechaNacimiento.Date.Month)/@Html.DisplayFor(model => model.FechaNacimiento.Date.Year)</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Latest Posts -->
+                    <!--
+
+                    <div class="sidebar_section">
+                        <div class="sidebar_section_title">
+                            <h3>Latest posts</h3>
+                        </div>
+
+                    <div class="latest_posts">
+
+
+                    -->
+                    <!-- Latest Post -->
+                    <!--
+                    <div class="latest_post">
+                        <div class="latest_post_image">
+                            <img src="images/latest_1.jpg" alt="https://unsplash.com/dsmacinnes">
+                        </div>
+                        <div class="latest_post_title"><a href="news_post.html">Why do you need a qualification?</a></div>
+                        <div class="latest_post_meta">
+                            <span class="latest_post_author"><a href="#">By Christian Smith</a></span>
+                            <span>|</span>
+                            <span class="latest_post_comments"><a href="#">3 Comments</a></span>
+                        </div>
+                    </div>
+
+
+                    -->
+                    <!-- Latest Post -->
+                    <!--
+                    <div class="latest_post">
+                        <div class="latest_post_image">
+                            <img src="images/latest_2.jpg" alt="https://unsplash.com/erothermel">
+                        </div>
+                        <div class="latest_post_title"><a href="news_post.html">Why do you need a qualification?</a></div>
+                        <div class="latest_post_meta">
+                            <span class="latest_post_author"><a href="#">By Christian Smith</a></span>
+                            <span>|</span>
+                            <span class="latest_post_comments"><a href="#">3 Comments</a></span>
+                        </div>
+                    </div>
+
+
+                    -->
+                    <!-- Latest Post -->
+                    <!--
+                            <div class="latest_post">
+                                <div class="latest_post_image">
+                                    <img src="images/latest_3.jpg" alt="https://unsplash.com/element5digital">
+                                </div>
+                                <div class="latest_post_title"><a href="news_post.html">Why do you need a qualification?</a></div>
+                                <div class="latest_post_meta">
+                                    <span class="latest_post_author"><a href="#">By Christian Smith</a></span>
+                                    <span>|</span>
+                                    <span class="latest_post_comments"><a href="#">3 Comments</a></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                            </div>
+
+
+                    -->
+                    <!-- Tags -->
+                    <!--
+                        <div class="sidebar_section">
+                            <div class="sidebar_section_title">
+                                <h3>Tags</h3>
+                            </div>
+                            <div class="tags d-flex flex-row flex-wrap">
+                                <div class="tag"><a href="#">Course</a></div>
+                                <div class="tag"><a href="#">Design</a></div>
+                                <div class="tag"><a href="#">FAQ</a></div>
+                                <div class="tag"><a href="#">Teachers</a></div>
+                                <div class="tag"><a href="#">School</a></div>
+                                <div class="tag"><a href="#">Graduate</a></div>
+                            </div>
+                        </div>
+
+
+                    -->
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+
+    </div>
 </div>
+
+<!-- Footer -->
+
+<footer class="footer">
+    <div class="container">
+
+
+
+        <!-- Footer Content -->
+
+        <div class="footer_content">
+            <div class="row">
+
+                <!-- Footer Column - About -->
+                <div class="col-lg-3 footer_col">
+
+                    <!-- Logo -->
+                    <div class="logo_container">
+                        <div class="logo">
+                            <img src="images/logo.png" alt="">
+                            <span>course</span>
+                        </div>
+                    </div>
+
+                    <p class="footer_about_text">In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin quis mi malesuada, finibus tortor fermentum, tempor lacus.</p>
+
+                </div>
+
+                <!-- Footer Column - Menu -->
+
+                <div class="col-lg-3 footer_col">
+                    <div class="footer_column_title">Menu</div>
+                    <div class="footer_column_content">
+                        <ul>
+                            <li class="footer_list_item"><a href="index.html">Home</a></li>
+                            <li class="footer_list_item"><a href="#">About Us</a></li>
+                            <li class="footer_list_item"><a href="courses.html">Courses</a></li>
+                            <li class="footer_list_item"><a href="#">News</a></li>
+                            <li class="footer_list_item"><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Footer Column - Usefull Links -->
+
+                <div class="col-lg-3 footer_col">
+                    <div class="footer_column_title">Usefull Links</div>
+                    <div class="footer_column_content">
+                        <ul>
+                            <li class="footer_list_item"><a href="#">Testimonials</a></li>
+                            <li class="footer_list_item"><a href="#">FAQ</a></li>
+                            <li class="footer_list_item"><a href="#">Community</a></li>
+                            <li class="footer_list_item"><a href="#">Campus Pictures</a></li>
+                            <li class="footer_list_item"><a href="#">Tuitions</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Footer Column - Contact -->
+
+                <div class="col-lg-3 footer_col">
+                    <div class="footer_column_title">Contact</div>
+                    <div class="footer_column_content">
+                        <ul>
+                            <li class="footer_contact_item">
+                                <div class="footer_contact_icon">
+                                    <img src="images/placeholder.svg" alt="https://www.flaticon.com/authors/lucy-g">
+                                </div>
+                                Blvd Libertad, 34 m05200 Arévalo
+                            </li>
+                            <li class="footer_contact_item">
+                                <div class="footer_contact_icon">
+                                    <img src="images/smartphone.svg" alt="https://www.flaticon.com/authors/lucy-g">
+                                </div>
+                                0034 37483 2445 322
+                            </li>
+                            <li class="footer_contact_item">
+                                <div class="footer_contact_icon">
+                                    <img src="images/envelope.svg" alt="https://www.flaticon.com/authors/lucy-g">
+                                </div>hello@company.com
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer Copyright -->
+
+        <div class="footer_bar d-flex flex-column flex-sm-row align-items-center">
+            <div class="footer_copyright">
+                <span>Colorlib All rights reserved</span>
+            </div>
+            <div class="footer_social ml-sm-auto">
+                <ul class="menu_social">
+                    <li class="menu_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                    <li class="menu_social_item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                    <li class="menu_social_item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li class="menu_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="menu_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+</div>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="styles/bootstrap4/popper.js"></script>
+<script src="styles/bootstrap4/bootstrap.min.js"></script>
+<script src="plugins/greensock/TweenMax.min.js"></script>
+<script src="plugins/greensock/TimelineMax.min.js"></script>
+<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="plugins/greensock/animation.gsap.min.js"></script>
+<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="plugins/scrollTo/jquery.scrollTo.min.js"></script>
+<script src="plugins/easing/easing.js"></script>
+<script src="js/news_custom.js"></script>
+
+
+
+
+
+
+<script src="~/js/jquery-3.2.1.min.js"></script>
+
+<script src="~/css/bootstrap4/popper.js"></script>
+<script src="~/css/bootstrap4/bootstrap.min.js"></script>
+<script src="~/plugins/greensock/TweenMax.min.js"></script>
+<script src="~/plugins/greensock/TimelineMax.min.js"></script>
+<script src="~/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="~/plugins/greensock/animation.gsap.min.js"></script>
+<script src="~/plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="~/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="~/plugins/scrollTo/jquery.scrollTo.min.js"></script>
+<script src="~/plugins/easing/easing.js"></script>
+<script src="~/js/custom.js"></script>
+<script src="~/js/videobg.js"></script>

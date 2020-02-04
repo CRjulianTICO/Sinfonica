@@ -33,8 +33,34 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
         // GET: Admin/Directors
         public async Task<IActionResult> Index()
         {
+
+
+            var questionnaire = _context.Directors
+                                            .Select(n => new Director
+                                            {
+                                                Id = n.Id,
+                                                Nombre = n.Nombre,
+                                                PrimerApellido = n.PrimerApellido,
+                                                SegundoApellido = n.SegundoApellido,
+                                                Carrera = n.Carrera,
+                                                Correo = n.Correo,
+                                                Estudios = n.Estudios,
+                                                FechaNacimiento = n.FechaNacimiento,
+                                                ImageUrl = n.ImageUrl,
+                                                Informacion = n.Informacion,
+                                                Telefono = n.Telefono,
+                                                Estado = n.Estado,
+
+
+                                                Conjuntos = n.Conjuntos.Where(p => p.Estado == true).ToList()
+
+
+
+
+
+                                            });
             var view = from progra in await this._context.Directors.ToListAsync() where progra.Estado == true select progra;
-            return View(view.OrderBy(a => a.Nombre));
+            return View(questionnaire.OrderBy(a => a.Nombre));
         }
 
 
