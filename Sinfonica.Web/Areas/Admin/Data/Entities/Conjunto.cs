@@ -17,5 +17,29 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
         public String Informacion { get; set; }
         [Required]
         public Boolean Estado { get; set; }
+
+
+
+        [Display(Name = "Image")]
+        public string ImageUrl
+        {
+            get;
+            set;
+        }
+
+        public string ImageFullPath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.ImageUrl))
+                {
+                    return null;
+                }
+                return $"https://xaesw.azurewebsites.net{this.ImageUrl.Substring(1)}";
+            }
+        }
+
+
+
     }
 }
