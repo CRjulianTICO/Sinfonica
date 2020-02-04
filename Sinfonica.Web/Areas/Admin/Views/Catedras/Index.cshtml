@@ -3,14 +3,24 @@
 @{
     ViewData["Title"] = "Index";
 }
+<section class="content-header">
+    <h1>
+        Catedras
+        <small>Ver todo</small>
+    </h1>
 
-<h2>Index</h2>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Todos los datos</h3>
+                    <a class="btn btn-primary pull-right" asp-action="Create"><i class="fa fa-plus"></i> Agregar</a>
+                </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+                <table id="datatable" class="display responsive nowrap dataTable no-footer dtr-inline collapsed table table-bordered table-striped">
+                   <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.NombreCatedra)
@@ -50,4 +60,12 @@
         </tr>
 }
     </tbody>
-</table>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+

@@ -3,39 +3,57 @@
 @{
     ViewData["Title"] = "Index";
 }
+<section class="content-header">
+    <h1>
+        Cursos - Profesores
+        <small>Ver todo</small>
+    </h1>
 
-<h2>Index</h2>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Todos los datos</h3>
+                    <a class="btn btn-primary pull-right" asp-action="Create"><i class="fa fa-plus"></i> Agregar</a>
+                </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Profesors)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cursos)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Profesors.NombreCompleto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cursos.NombreCurso)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {  IdCurso=item.Cursos.Id, IdProfesor = item.Profesors.Id }) |
-                @Html.ActionLink("Details", "Details", new { IdCurso=item.Cursos.Id, IdProfesor = item.Profesors.Id }) |
-                @Html.ActionLink("Delete", "Delete", new {  IdCurso=item.Cursos.Id, IdProfesor = item.Profesors.Id  })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                <table id="datatable" class="display responsive nowrap dataTable no-footer dtr-inline collapsed table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profesors)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cursos)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Profesors.NombreCompleto)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cursos.NombreCurso)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { IdCurso = item.Cursos.Id, IdProfesor = item.Profesors.Id }) |
+                                    @Html.ActionLink("Details", "Details", new { IdCurso = item.Cursos.Id, IdProfesor = item.Profesors.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { IdCurso = item.Cursos.Id, IdProfesor = item.Profesors.Id })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
