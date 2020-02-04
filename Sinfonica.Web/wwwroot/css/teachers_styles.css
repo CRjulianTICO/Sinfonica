@@ -851,6 +851,17 @@ section
 	color: #1a1a1a;
 	line-height: 1.2;
 }
+
+.card-title p
+{
+	font-size: 22px;
+	font-weight: 500;
+	color: #1a1a1a;
+	line-height: 1.2;
+}
+
+
+
 .card-title a:hover
 {
 	color: #a5a5a5;

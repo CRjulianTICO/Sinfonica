@@ -186,50 +186,9 @@ namespace Sinfonica.Web.Areas.Admin.Data
 
 
 
-           
 
 
-
-
-
-            /*
-
-            if (!this.context.Products.Any())
-            {
-                this.AddProduct("iPhone X", user);
-                this.AddProduct("Magic Mouse", user);
-                this.AddProduct("iWatch Series 4", user);
-                this.AddProduct("iPad Air 2", user);
-                await this.context.SaveChangesAsync();
-            }
-        }*/
-
-
-
-
-
-            /*
-
-        private void AddProduct(string name, User user)
-        {
-            this.context.Products.Add(new Product
-            {
-                Name = name,
-                Price = this.random.Next(1000),
-                IsAvailable = true,
-                Stock = this.random.Next(100),
-                LastPurchase = System.DateTime.Now,
-                LastSale = System.DateTime.Now,
-                User = user
-            });
-        }*/
-
-
-
-
-
-
-
+           await this.context.SaveChangesAsync();
 
 
         }
@@ -242,8 +201,9 @@ namespace Sinfonica.Web.Areas.Admin.Data
             {
                 NombreDepartamento = nombre,
                 Estado = true
-            }); 
+            });
 
+            
         }
 
 
@@ -299,6 +259,7 @@ namespace Sinfonica.Web.Areas.Admin.Data
                 ImageUrl = "~/images/Profesores/97e52a8c-174a-47ee-89ae-9bdccf86b39f.jpg"
 
             });
+            
         }
 
         private void AddConjuntos(string nombre, Director director)
@@ -311,6 +272,7 @@ namespace Sinfonica.Web.Areas.Admin.Data
                 Director = director
                 
             });
+            
         }
 
 
