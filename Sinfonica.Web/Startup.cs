@@ -172,9 +172,17 @@ namespace Sinfonica.Web
 
             app.UseMvc(routes =>
             {
-                    routes.MapRoute(
+                
+
+
+                routes.MapRoute(
                       name: "areas",
                       template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                    );
+
+                routes.MapRoute(
+                      name: "areass",
+                      template: "{Admin}/{controller=Account}/{action=Login}"
                     );
 
                 routes.MapRoute(
