@@ -4,12 +4,24 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Estudiante</h4>
-    <hr />
-    <dl class="dl-horizontal">
+<section class="content-header">
+        <h1>
+            Estudiantes
+            <small>Detalles</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a asp-action="Index"><i class="fa fa-arrow-left"></i> Regresar</a></li>
+        </ol>
+    </section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+              
+                </div>
+                <div class="box-body">
+                      <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Nombre)
         </dt>
@@ -53,8 +65,11 @@
             @Html.DisplayFor(model => model.Carnet)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+      <!-- /.row -->
+          <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Regresar</a>
+    </section>

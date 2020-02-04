@@ -3,14 +3,24 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
-<h2>Edit</h2>
-
-<h4>Acontecer</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+ <section class="content-header">
+        <h1>
+            Acontecer
+            <small>Editar</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a asp-action="Index"><i class="fa fa-arrow-left"></i> Regresar</a></li>
+        </ol>
+    </section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Ingresar Datos</h3>
+                </div>
+                <div class="box-body">
+                    <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
@@ -56,13 +66,13 @@
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-primary btn-block" />
             </div>
         </form>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <!-- /.row -->
+</section>
 

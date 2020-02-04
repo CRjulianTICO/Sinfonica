@@ -201,6 +201,7 @@ namespace Sinfonica.Web.Areas.Admin.Data
             {
                 NombreDepartamento = nombre,
                 Estado = true
+
             });
 
             

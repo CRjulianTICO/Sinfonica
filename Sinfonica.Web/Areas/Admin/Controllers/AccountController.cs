@@ -37,7 +37,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
     {
         if (this.User.Identity.IsAuthenticated)
         {
-                ViewBag["Info"] = "No sirvio";
+               
             return this.RedirectToAction("Index", "Home");
         }
 
