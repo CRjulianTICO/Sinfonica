@@ -17,6 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\lib\Trumbowyg-master\.github\FUNDING.yml" />
+    <None Include="wwwroot\lib\Trumbowyg-master\.github\ISSUE_TEMPLATE.md" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="Areas\Admin\Views\Shared\Error.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

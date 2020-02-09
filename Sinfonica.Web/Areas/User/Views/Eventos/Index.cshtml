@@ -62,8 +62,8 @@
                             <div class="col-lg-6 order-lg-2 order-3">
                                 <div class="event_content">
                                     <div class="event_name"><a class="trans_200" asp-action="Details" asp-route-id="@item.Id">@item.Titulo</a></div>
-                                    <div class="event_location">@item.Encabezado</div>
-                                    <p>@item.Descripcion</p>
+                                    <div class="event_location">@item.Encabezado.TrimEnd()</div>
+                                    <p>@item.Descripcion.Remove(125) ....</p>
                                 </div>
                             </div>
 

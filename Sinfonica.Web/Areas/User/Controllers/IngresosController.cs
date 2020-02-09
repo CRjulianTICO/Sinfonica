@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Sinfonica.Web.Areas.Admin.Data;
-using Sinfonica.Web.Areas.User.Data.Entities;
-using Sinfonica.Web.Areas.User.Helpers;
+using Sinfonica.Web.Areas.Admin.Data.Entities;
+using Sinfonica.Web.Areas.Admin.Helpers;
 using Sinfonica.Web.Areas.User.Models;
 
 namespace Sinfonica.Web.Areas.User.Controllers
