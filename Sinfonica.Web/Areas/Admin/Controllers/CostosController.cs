@@ -26,6 +26,15 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
             this.combosHelper = combosHelper;
         }
 
+
+
+
+      
+
+
+
+
+
         // GET: Admin/Costos
         public async Task<IActionResult> Index()
         {
