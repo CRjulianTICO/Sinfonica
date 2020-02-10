@@ -40,7 +40,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
         {
 
             
-            return View(await _context.Costos.Include(p => p.Programas).ToListAsync());
+            return View(await _context.Costos.Include(p => p.Programas).Where(a => a.Programas.Estado == true).ToListAsync());
         }
 
 

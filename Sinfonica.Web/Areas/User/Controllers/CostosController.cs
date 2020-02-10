@@ -56,8 +56,59 @@ namespace Sinfonica.Web.Areas.User.Controllers
         {
             ViewBag.Programas = this.combosHelper.GetComboProgramas();
 
+            _context.Costos.Include(p => p.Programas);
 
-            return View( _context.Costos.Include(p => p.Programas));
+            CostosViewModel costosViewModel = new CostosViewModel();
+
+            costosViewModel.Programs = this.combosHelper.GetComboProgramas();
+
+            return View( costosViewModel );
+        }
+
+       
+
+        [HttpGet]
+        public PartialViewResult _TipoPrograma(int Id)
+        {
+
+
+
+
+           // var view = from progra in this.departamentoRepository.GetAll() where progra.Estado == true select progra;
+
+            var costo = _context.Costos.Include(p => p.Programas).FirstOrDefault(a => a.Programas.Id == Id);
+
+            var view = from progra in _context.Costos.Include(p => p.Programas) where progra.Programas.Id == Id select progra;
+
+            if (costo == null)
+            {
+                //no sirvio
+               String costos = "no sirvio";
+            }
+
+
+            if (view == null)
+            {
+                //no sirvio
+                String costos = "no sirvio";
+            }
+
+            var costosViewModel = new CostosViewModel
+            {
+                Id = view.First().Id,
+                Costo1Semestre = view.First().Costo1Semestre,
+                Costo2Semestre = view.First().Costo2Semestre,
+                FechaLim1Sem = view.First().FechaLim1Sem,
+                FechaLim2Sem = view.First().FechaLim2Sem,
+                Informacion = view.First().Informacion,
+                Matricula = view.First().Matricula,
+                Programas = view.First().Programas
+
+        };
+
+
+
+            return PartialView(costosViewModel);
         }
 
 

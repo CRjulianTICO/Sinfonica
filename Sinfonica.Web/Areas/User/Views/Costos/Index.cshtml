@@ -4,31 +4,150 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 
 
-@foreach (var item in Model)
-{
-    <option value="@item.">
-        @item.delivery_address
-    </option>
-}
+<link rel="stylesheet" type="text/css" href="~/css/profile_styles.css">
+<link rel="stylesheet" type="text/css" href="~/css/profile_responsive.css">
+<script type="text/javascript" src="~/js/jquery-3.2.1.min.js"></script>
+<script src="~/css/bootstrap4/popper.js"></script>
+<script src="~/css/bootstrap4/bootstrap.min.js"></script>
 
 
-@Html.Partial("_TipoPrograma.cshtml");
+
+
+
+<!-- Home -->
+
+
+
+
+
+
+
+
+
+<div class="home">
+    <div class="home_background_container prlx_parent">
+        <div class="home_background prlx" style="background-image:url(/images/search_background.jpg)"></div>
+    </div>
+    <div class="home_content">
+        <h1>Costos </h1>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- News -->
+
+<div class="news">
+    <div class="container">
+        <div class="row">
+
+
+
+            <!-- News Post Column -->
+
+            <div class="col-lg-8">
+
+                <div class="news_post_container">
+                    <!-- News Post -->
+                    <div class="news_post">
+
+                        <div class=" dropdown custom-select">
+                            @Html.DropDownList("ddlParameter", (List<SelectListItem>)Model.Programs)
+                        </div>
+
+                        <div class="news_post_top d-flex flex-column flex-sm-row">
+
+                            <div class="news_post_title_container">
+                                <div class="news_post_title">
+                                    <a style="color: #000;">Costos</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div  id="divPartialView">
+                            @Html.Partial("_TipoPrograma", new Sinfonica.Web.Areas.Admin.Models.CostosViewModel
+                                                               {
+                                                                   Costo1Semestre = Model.Costo1Semestre,
+                                                                   Costo2Semestre = Model.Costo2Semestre,
+                                                                   FechaLim1Sem = Model.FechaLim1Sem,
+                                                                   FechaLim2Sem = Model.FechaLim2Sem,
+                                                                   Id = Model.Id,
+                                                                   Informacion = Model.Informacion,
+                                                                   Matricula = Model.Matricula,
+                                                                   Programas = Model.Programas
+
+
+                                                               })
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
 
 
 
 <script>
 
+    $("#ddlParameter").change(function (event) {
 
-    $('#ddldelivery').load("/ControllerName/_deliveryTypePartial?city_id=" Id);
 
+        var aaa = document.getElementById("ddlParameter").value;
+
+
+        $.ajax({
+            url: "@Url.Action("_TipoPrograma","Costos")",
+         data: { Id : aaa },
+            type: "Get",
+            dataType: "html",
+            success: function (data) {
+                //Whatever result you have got from your controller with html partial view replace with a specific html.
+                $("#divPartialView").html( data ); // HTML DOM replace
+            }
+        });
+
+
+
+    });
 </script>
+
+
+
 
 
 
