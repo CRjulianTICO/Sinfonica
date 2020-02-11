@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Sinfonica.Web.Areas.Admin.Data;
-using Sinfonica.Web.Areas.User.Data.Entities;
-using Sinfonica.Web.Areas.User.Helpers;
-using Sinfonica.Web.Areas.User.Models;
+using Sinfonica.Web.Areas.Admin.Data.Entities;
+using Sinfonica.Web.Areas.Admin.Helpers;
+using Sinfonica.Web.Areas.Admin.Models;
 
 namespace Sinfonica.Web.Areas.User.Controllers
 {
@@ -26,12 +26,89 @@ namespace Sinfonica.Web.Areas.User.Controllers
             this.combosHelper = combosHelper;
         }
 
+
+
+        public  IActionResult _TipoProgramaPartial(decimal Id)
+        {
+            var model =  _context.Costos.Where(row => row.Programas.Id == Id).ToList();
+
+            var cos = new CostosViewModel
+            {
+                Programs = this.combosHelper.GetComboProgramas(),
+
+                Id = model.First().Id,
+
+                Costo1Semestre = model.First().Costo1Semestre,
+                Costo2Semestre = model.First().Costo2Semestre,
+                FechaLim1Sem = model.First().FechaLim1Sem,
+                FechaLim2Sem = model.First().FechaLim2Sem,
+                Informacion = model.First().Informacion,
+                Matricula = model.First().Matricula
+
+            };
+
+            return PartialView(model);
+        }
+
+
         // GET: Admin/Costos
         public async Task<IActionResult> Index()
         {
+            ViewBag.Programas = this.combosHelper.GetComboProgramas();
 
-            
-            return View(await _context.Costos.Include(p => p.Programas).ToListAsync());
+            _context.Costos.Include(p => p.Programas);
+
+            CostosViewModel costosViewModel = new CostosViewModel();
+
+            costosViewModel.Programs = this.combosHelper.GetComboProgramas();
+
+            return View( costosViewModel );
+        }
+
+       
+
+        [HttpGet]
+        public PartialViewResult _TipoPrograma(int Id)
+        {
+
+
+
+
+           // var view = from progra in this.departamentoRepository.GetAll() where progra.Estado == true select progra;
+
+            var costo = _context.Costos.Include(p => p.Programas).FirstOrDefault(a => a.Programas.Id == Id);
+
+            var view = from progra in _context.Costos.Include(p => p.Programas) where progra.Programas.Id == Id select progra;
+
+            if (costo == null)
+            {
+                //no sirvio
+               String costos = "no sirvio";
+            }
+
+
+            if (view == null)
+            {
+                //no sirvio
+                String costos = "no sirvio";
+            }
+
+            var costosViewModel = new CostosViewModel
+            {
+                Id = view.First().Id,
+                Costo1Semestre = view.First().Costo1Semestre,
+                Costo2Semestre = view.First().Costo2Semestre,
+                FechaLim1Sem = view.First().FechaLim1Sem,
+                FechaLim2Sem = view.First().FechaLim2Sem,
+                Informacion = view.First().Informacion,
+                Matricula = view.First().Matricula,
+                Programas = view.First().Programas
+
+        };
+
+
+
+            return PartialView(costosViewModel);
         }
 
 

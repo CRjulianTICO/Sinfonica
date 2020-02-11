@@ -16,6 +16,13 @@ namespace Sinfonica.Web.Areas.User.Models
         public int ProgramasId { get; set; }
 
         public IEnumerable<SelectListItem> Programs { get; set; }
+
+
+        public int SelectedParameter { get; set; }
+
+        public String PartialView { get; set; }
+
+
     }
 }
 

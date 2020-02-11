@@ -13,7 +13,11 @@
   <ItemGroup>
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Models\" />
-    <Folder Include="Areas\User\Views\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\Trumbowyg-master\.github\FUNDING.yml" />
+    <None Include="wwwroot\lib\Trumbowyg-master\.github\ISSUE_TEMPLATE.md" />
   </ItemGroup>
 
   <ItemGroup>

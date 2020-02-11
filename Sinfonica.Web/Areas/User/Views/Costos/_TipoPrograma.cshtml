@@ -1,0 +1,39 @@
+﻿@model Sinfonica.Web.Areas.Admin.Models.CostosViewModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Costo de Matricula</th>
+                <th>Costo Primer Semestre</th>
+                <th>Fecha Limite Primer Semestre</th>
+                <th>Costo Segundo Semestre</th>
+                <th>Fecha Limite Segundo Semestre</th>
+                <th>Programa</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.Matricula)</td>
+                <td>@Html.DisplayFor(model => model.Costo1Semestre)</td>
+                <td>@Html.DisplayFor(model => model.FechaLim1Sem)</td>
+                <td>@Html.DisplayNameFor(model => model.Costo2Semestre)</td>
+                <td>@Html.DisplayFor(model => model.FechaLim2Sem)</td>
+                <td>@Html.DisplayFor(model => model.Programas.Nombre)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<h2 style="color: #000;">Informacion</h2>
+
+
+<p class="news_post_text" style="margin-top: 59px;">
+
+    @Html.DisplayFor(model => model.Informacion)
+
+</p>

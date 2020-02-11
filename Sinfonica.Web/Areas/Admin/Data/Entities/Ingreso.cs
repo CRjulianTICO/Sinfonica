@@ -21,7 +21,7 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
         [Display(Name = "Requisitos para Extranjeros")]
         public String RequisitosExtranjeros { get; set; }
         [Required]
-        [Display(Name = "Link del Formulario")]
+        [Display(Name = "Enlace del Formulario")]
         public String Formulario { get; set; }
 
         public Prueba Pruebas { get; set; }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Sinfonica.Web.Areas.User.Data.Entities;
+using Sinfonica.Web.Areas.Admin.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
