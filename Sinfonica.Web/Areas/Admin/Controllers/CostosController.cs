@@ -26,12 +26,21 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
             this.combosHelper = combosHelper;
         }
 
+
+
+
+      
+
+
+
+
+
         // GET: Admin/Costos
         public async Task<IActionResult> Index()
         {
 
             
-            return View(await _context.Costos.Include(p => p.Programas).ToListAsync());
+            return View(await _context.Costos.Include(p => p.Programas).Where(a => a.Programas.Estado == true).ToListAsync());
         }
 
 
