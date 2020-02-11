@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,23 +11,24 @@ using Sinfonica.Web.Areas.Admin.Data.Entities;
 
 namespace Sinfonica.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
-    public class EstudiantesController : Controller
+    public class ContactoesController : Controller
     {
         private readonly DataContext _context;
 
-        public EstudiantesController(DataContext context)
+        public ContactoesController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: Admin/Estudiantes
+        // GET: Admin/Contactoes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Estudiantes.Where(e => e.Estado == true).ToListAsync());
+            return View(await _context.Contacto.ToListAsync());
         }
 
-        // GET: Admin/Estudiantes/Details/5
+        // GET: Admin/Contactoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +36,39 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var estudiante = await _context.Estudiantes
+            var contacto = await _context.Contacto
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (estudiante == null)
+            if (contacto == null)
             {
                 return NotFound();
             }
 
-            return View(estudiante);
+            return View(contacto);
         }
 
-        // GET: Admin/Estudiantes/Create
+        // GET: Admin/Contactoes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Estudiantes/Create
+        // POST: Admin/Contactoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,PrimerApellido,SegundoApellido,Telefono,Correo,Estado,Carnet")] Estudiante estudiante)
+        public async Task<IActionResult> Create([Bind("Id,Email,Password,Host,Puerto")] Contacto contacto)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(estudiante);
+                _context.Add(contacto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(estudiante);
+            return View(contacto);
         }
 
-        // GET: Admin/Estudiantes/Edit/5
+        // GET: Admin/Contactoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +76,22 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var estudiante = await _context.Estudiantes.FindAsync(id);
-            if (estudiante == null)
+            var contacto = await _context.Contacto.FindAsync(id);
+            if (contacto == null)
             {
                 return NotFound();
             }
-            return View(estudiante);
+            return View(contacto);
         }
 
-        // POST: Admin/Estudiantes/Edit/5
+        // POST: Admin/Contactoes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,PrimerApellido,SegundoApellido,Telefono,Correo,Estado,Carnet")] Estudiante estudiante)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Password,Host,Puerto")] Contacto contacto)
         {
-            if (id != estudiante.Id)
+            if (id != contacto.Id)
             {
                 return NotFound();
             }
@@ -98,12 +100,12 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(estudiante);
+                    _context.Update(contacto);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EstudianteExists(estudiante.Id))
+                    if (!ContactoExists(contacto.Id))
                     {
                         return NotFound();
                     }
@@ -114,10 +116,10 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(estudiante);
+            return View(contacto);
         }
 
-        // GET: Admin/Estudiantes/Delete/5
+        // GET: Admin/Contactoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,31 +127,30 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var estudiante = await _context.Estudiantes
+            var contacto = await _context.Contacto
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (estudiante == null)
+            if (contacto == null)
             {
                 return NotFound();
             }
 
-            return View(estudiante);
+            return View(contacto);
         }
 
-        // POST: Admin/Estudiantes/Delete/5
+        // POST: Admin/Contactoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var estudiante = await _context.Estudiantes.FindAsync(id);
-            estudiante.Estado = false;
-            _context.Estudiantes.Update(estudiante);
+            var contacto = await _context.Contacto.FindAsync(id);
+            _context.Contacto.Remove(contacto);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EstudianteExists(int id)
+        private bool ContactoExists(int id)
         {
-            return _context.Estudiantes.Any(e => e.Id == id);
+            return _context.Contacto.Any(e => e.Id == id);
         }
     }
 }

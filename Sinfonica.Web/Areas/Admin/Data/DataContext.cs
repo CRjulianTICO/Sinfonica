@@ -49,6 +49,10 @@ namespace Sinfonica.Web.Areas.Admin.Data
 
         public DbSet<Noticia> Noticias { get; set; }
 
+        public DbSet<Contacto> Contactos { get; set; }
+
+        public DbSet<Correo> Correos { get; set; }
+
 
 
 
@@ -130,6 +134,8 @@ namespace Sinfonica.Web.Areas.Admin.Data
 
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<Sinfonica.Web.Areas.Admin.Data.Entities.Contacto> Contacto { get; set; }
 
         
 

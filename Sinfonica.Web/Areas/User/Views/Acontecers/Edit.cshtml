@@ -1,26 +1,16 @@
-﻿@model Sinfonica.Web.Areas.Admin.Models.AcontecersViewModel
+﻿@model Sinfonica.Web.Areas.Admin.Data.Entities.Acontecer
 
 @{
     ViewData["Title"] = "Edit";
 }
- <section class="content-header">
-        <h1>
-            Acontecer
-            <small>Editar</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a asp-action="Index"><i class="fa fa-arrow-left"></i> Regresar</a></li>
-        </ol>
-    </section>
-<section class="content">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Ingresar Datos</h3>
-                </div>
-                <div class="box-body">
-                    <form asp-action="Edit" enctype="multipart/form-data">
+
+<h2>Edit</h2>
+
+<h4>Acontecer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
@@ -61,18 +51,18 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label>
-                <input asp-for="ImageFile" class="form-control" type="file" />
-                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary btn-block" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>
-                </div>
-            </div>
-        </div>
     </div>
-    <!-- /.row -->
-</section>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
