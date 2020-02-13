@@ -10,6 +10,7 @@ using Sinfonica.Web.Areas.Admin.Data;
 using Sinfonica.Web.Areas.Admin.Data.Entities;
 using Sinfonica.Web.Areas.Admin.Helpers;
 using Sinfonica.Web.Areas.Admin.Models;
+using Sinfonica.Web.Areas.User.Pagination;
 
 namespace Sinfonica.Web.Areas.User.Controllers
 {
@@ -24,9 +25,39 @@ namespace Sinfonica.Web.Areas.User.Controllers
         }
 
         // GET: User/Acontecers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? pageNumber, string sortOrder, string currentFilter, string searchString)
         {
-            return View(await _context.Acontecers.Include( e => e.Estudiantes ).Where(a => a.Estado == true && a.Fecha >= System.DateTime.Now).OrderBy( f => f.Fecha).ToListAsync());
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+
+
+            ViewData["CurrentFilter"] = searchString;
+
+            var aconte = from progra in _context.Acontecers.Include(e => e.Estudiantes) where progra.Estado == true && progra.Fecha >= System.DateTime.Now  select progra;
+
+            aconte = aconte.OrderBy(a => a.Fecha);
+            
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                aconte = aconte.Where(s => s.Titulo.Contains(searchString));
+            }
+
+            int pageSize = 5;
+
+            
+
+
+            return View(await PaginatedList<Acontecer>.CreateAsync(aconte.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: User/Acontecers/Details/5

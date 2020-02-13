@@ -52,6 +52,8 @@ namespace Sinfonica.Web
             /*se agreggo*/
             services.AddIdentity<User, IdentityRole>(cfg =>
             {
+                cfg.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
+                cfg.SignIn.RequireConfirmedEmail = true;
                 cfg.User.RequireUniqueEmail = true;
                 cfg.Password.RequireDigit = false;
                 cfg.Password.RequiredUniqueChars = 0;
@@ -60,7 +62,8 @@ namespace Sinfonica.Web
                 cfg.Password.RequireUppercase = false;
                 cfg.Password.RequiredLength = 6;
             })
-        .AddEntityFrameworkStores<Areas.Admin.Data.DataContext>();
+                    .AddDefaultTokenProviders()
+                    .AddEntityFrameworkStores<Areas.Admin.Data.DataContext>();
 
 
 
@@ -102,6 +105,7 @@ namespace Sinfonica.Web
 
 
 
+            services.AddScoped<IMailHelper, MailHelper>();
 
 
 
@@ -172,23 +176,28 @@ namespace Sinfonica.Web
 
             app.UseMvc(routes =>
             {
-                
 
-
+               
                 routes.MapRoute(
                       name: "areas",
                       template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                     );
 
-                routes.MapRoute(
-                      name: "areass",
-                      template: "{Admin}/{controller=Account}/{action=Login}"
-                    );
+                
+
 
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                
             });
         }
+
+
+
+
+
+
     }
 }

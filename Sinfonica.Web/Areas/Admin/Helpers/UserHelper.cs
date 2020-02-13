@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Sinfonica.Web.Areas.Admin.Data.Entities;
 using Sinfonica.Web.Areas.Admin.Models;
 using System;
@@ -8,6 +9,12 @@ using System.Threading.Tasks;
 
 namespace Sinfonica.Web.Areas.Admin.Helpers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Data.Entities;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
     public class UserHelper : IUserHelper
     {
         private readonly UserManager<Sinfonica.Web.Areas.Admin.Data.Entities.User> userManager;
@@ -88,9 +95,50 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
             await this.userManager.AddToRoleAsync(user, roleName);
         }
 
+
+
+
+
+
         public async Task<bool> IsUserInRoleAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user, string roleName)
         {
             return await this.userManager.IsInRoleAsync(user, roleName);
+        }
+
+
+
+
+
+
+
+        public async Task<IdentityResult> ConfirmEmailAsync(User user, string token)
+        {
+            return await this.userManager.ConfirmEmailAsync(user, token);
+        }
+
+        public async Task<string> GenerateEmailConfirmationTokenAsync(User user)
+        {
+            return await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+        }
+
+        public async Task<User> GetUserByIdAsync(string userId)
+        {
+            return await this.userManager.FindByIdAsync(userId);
+        }
+
+
+
+
+
+
+        public async Task<string> GeneratePasswordResetTokenAsync(User user)
+        {
+            return await this.userManager.GeneratePasswordResetTokenAsync(user);
+        }
+
+        public async Task<IdentityResult> ResetPasswordAsync(User user, string token, string password)
+        {
+            return await this.userManager.ResetPasswordAsync(user, token, password);
         }
 
 

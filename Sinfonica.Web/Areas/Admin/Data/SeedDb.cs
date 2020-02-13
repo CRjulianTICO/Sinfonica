@@ -87,8 +87,38 @@ namespace Sinfonica.Web.Areas.Admin.Data
 
                 // await this.userHelper.AddUserToRoleAsync(user2, "Customer");
 
+
+
+
             }
 
+
+            var user3 = await this.userHelper.GetUserByEmailAsync("inmnoreply@gmail.com");
+
+            if (user3 == null)
+            {
+                user3 = new Sinfonica.Web.Areas.Admin.Data.Entities.User
+                {
+                    FirstName = "INM",
+                    LastName = "NoReply",
+                    Email = "inmnoreply@gmail.com",
+                    UserName = "inmnoreply@gmail.com",
+                    PhoneNumber = "60439999"
+                };
+
+                var result3 = await this.userHelper.AddUserAsync(user3, "123456");
+
+                if (result3 != IdentityResult.Success)
+                {
+                    throw new InvalidOperationException("Could not create the user in seeder 2");
+                }
+
+                // await this.userHelper.AddUserToRoleAsync(user2, "Customer");
+
+
+
+
+            }
 
 
 
@@ -104,6 +134,15 @@ namespace Sinfonica.Web.Areas.Admin.Data
                 await this.userHelper.AddUserToRoleAsync(user2, "Customer");
             }
 
+
+            var isInRole3 = await this.userHelper.IsUserInRoleAsync(user3, "Admin");
+            if (!isInRole3)
+            {
+                await this.userHelper.AddUserToRoleAsync(user3, "Admin");
+                var token = await this.userHelper.GenerateEmailConfirmationTokenAsync(user3);
+                await this.userHelper.ConfirmEmailAsync(user3, token);
+            }
+            
 
 
             if (!this.context.Departamentos.Any())
