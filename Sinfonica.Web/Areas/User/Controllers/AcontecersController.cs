@@ -139,9 +139,17 @@ namespace Sinfonica.Web.Areas.User.Controllers
                 if (estudiante != null)
                 {
                     obj.Estudiantes = estudiante;
-                    _context.Add(obj);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    if (acontecer.Estudiantes.Carnet == obj.Estudiantes.Carnet)
+                    {
+                        _context.Add(obj);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                    else
+                    {
+                        return new NotFoundViewResult("NoAuthorize");
+                    }
+                    
                 }
                 else
                 {

@@ -239,9 +239,11 @@ namespace Sinfonica.Web.Areas.Admin.Data
             this.context.Departamentos.Add(new Departamento
             {
                 NombreDepartamento = nombre,
-                Estado = true
+                Estado = true,
+                Informacion = ""
 
-            });
+
+            }) ;
 
             
         }

@@ -69,7 +69,26 @@
                                     <div class="event_content">
                                         <div class="event_name"><a class="trans_200" asp-action="Details" asp-route-id="@item.Id">@item.Titulo</a></div>
                                         <div class="event_location">@item.Encabezado</div>
-                                        <p>@item.Descripcion.Remove(125) ....</p>
+                                        <p>
+
+                                            @if (item.Descripcion.Length <= 125)
+                                            {
+
+                                                @item.Descripcion;
+
+                                            }
+                                            else
+                                            {
+                                                @item.Descripcion.Remove(125) 
+                                            }
+
+                                            ....
+
+
+
+
+
+                                        </p>
                                     </div>
                                 </div>
 

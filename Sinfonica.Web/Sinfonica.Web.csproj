@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\Trumbowyg-master\**" />
+    <Content Remove="wwwroot\lib\Trumbowyg-master\**" />
+    <EmbeddedResource Remove="wwwroot\lib\Trumbowyg-master\**" />
+    <None Remove="wwwroot\lib\Trumbowyg-master\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MailKit" Version="2.5.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
@@ -14,11 +21,6 @@
   <ItemGroup>
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\lib\Trumbowyg-master\.github\FUNDING.yml" />
-    <None Include="wwwroot\lib\Trumbowyg-master\.github\ISSUE_TEMPLATE.md" />
   </ItemGroup>
 
   <ItemGroup>

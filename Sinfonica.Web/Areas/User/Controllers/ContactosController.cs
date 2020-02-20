@@ -65,15 +65,15 @@ namespace Sinfonica.Web.Areas.User.Controllers
 
                 var client = new SmtpClient("smtp.mailtrap.io", 2525)
                 {
-                    Credentials = new NetworkCredential("244b317be017cf", "aa07fe2c92e9eb"),
+                    Credentials = new NetworkCredential("crd", "crd"),
                     EnableSsl = true
                 };
 
 
 
-                client.Send(correo.Email, "sinfonicatest-aeb54c@inbox.mailtrap.io",  correo.Nombre, correo.Mensaje);
+                client.Send(correo.Email, "mail",  correo.Nombre, correo.Mensaje);
 
-                client.Send("sinfonicatest-aeb54c@inbox.mailtrap.io", correo.Email,  "No responder", "Su correo llego exitosamente");
+                client.Send("mail", correo.Email,  "No responder", "Su correo llego exitosamente");
 
 
 
