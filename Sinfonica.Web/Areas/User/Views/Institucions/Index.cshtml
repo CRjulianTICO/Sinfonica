@@ -25,7 +25,7 @@
     
 <div class="col-lg-4">
       <div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action active_about">
+  <a id="historia" href="#" class="list-group-item list-group-item-action active_about" value="Historia">
     Bienvenida
   </a>
   <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
@@ -35,8 +35,9 @@
 </div>
 </div>
 
-<div class="col-lg-8">
-
+<div class="col-lg-8" id="divPartialView">
+     @Html.Partial("TipoPagina", new Sinfonica.Web.Areas.Admin.Data.Entities.Institucion { Bienvenida = Model.Bienvenida});
+@* 
                     <h1>Nuestros Cursos</h1>
                    <table class="table">
     <thead>
@@ -103,7 +104,7 @@
         </tr>
 }
     </tbody>
-</table>
+</table> *@
 
       
 
@@ -119,7 +120,34 @@
 
 </div>
 
+
 <script src="~/js/jquery-3.2.1.min.js"></script>
+<script>
+
+    $("#historia").click(function (event) {
+
+
+        var aaa = document.getElementById("historia").value;
+
+
+        $.ajax({
+            url: "@Url.Action("TipoPagina","Institucions")",
+         data: { Id : aaa },
+            type: "Get",
+            dataType: "html",
+            success: function (data) {
+                //Whatever result you have got from your controller with html partial view replace with a specific html.
+                $("#divPartialView").html( data ); // HTML DOM replace
+            }
+        });
+
+
+
+    });
+</script>
+
+
+
 
 <script src="~/css/bootstrap4/popper.js"></script>
 <script src="~/css/bootstrap4/bootstrap.min.js"></script>

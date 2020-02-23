@@ -26,13 +26,33 @@ namespace Sinfonica.Web.Areas.User.Controllers
             this.institucionRepository = institucionRepository;
         }
 
+         public  IActionResult TipoPagina(string name)
+        {
+            var view = _context.Institucions.ToList();
+            switch (name)
+                 {
+          case "Historia":
+              
+              break;
+          case "Bienvenida":
+              
+              break;
+          default:
+              Console.WriteLine("Default case");
+              break;
+             }
+
+            return PartialView(view);
+        }
+
+
 
 
 
         // GET: Admin/Institucions
         public async Task<IActionResult> Index()
         {
-            return View(this.institucionRepository.GetAll());
+            return View(await _context.Institucions.ToListAsync());
         }
 
 
