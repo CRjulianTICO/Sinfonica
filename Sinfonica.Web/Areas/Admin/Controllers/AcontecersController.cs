@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Sinfonica.Web.Areas.Admin.Data;
 using Sinfonica.Web.Areas.Admin.Data.Entities;
+using Sinfonica.Web.Areas.Admin.Models;
 
 namespace Sinfonica.Web.Areas.Admin.Controllers
 {
@@ -25,7 +27,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
         // GET: Admin/Acontecers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Acontecers.ToListAsync());
+            return View(await _context.Acontecers.Include(e => e.Estudiantes).Where(a => a.Estado == true).ToListAsync());
         }
 
         // GET: Admin/Acontecers/Details/5
@@ -57,11 +59,50 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,Encabezado,Informacion,Descripcion,Lugar,Fecha,Estado,ImageUrl")] Acontecer acontecer)
+        public async Task<IActionResult> Create( AcontecersViewModel acontecer)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(acontecer);
+
+                var path = string.Empty;
+
+                if (acontecer.ImageFile != null && acontecer.ImageFile.Length > 0)
+                {
+                    var guid = Guid.NewGuid().ToString();
+                    var file = $"{guid}.jpg";
+
+                    path = Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot\\images\\Acontecer",
+                        file);
+
+
+
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await acontecer.ImageFile.CopyToAsync(stream);
+                    }
+
+                    path = $"~/images/Acontecer/{file}";
+                }
+
+
+                var obj = new Acontecer
+                {
+                    Id = acontecer.Id,
+                    Estado = acontecer.Estado,
+                    Informacion = acontecer.Informacion,
+                    ImageUrl = path,
+                    Titulo = acontecer.Titulo,
+                    Descripcion = acontecer.Descripcion,
+                    Encabezado = acontecer.Encabezado,
+                    Estudiantes = acontecer.Estudiantes,
+                    Fecha = acontecer.Fecha,
+                    Lugar = acontecer.Lugar
+                };
+
+
+                _context.Add(obj);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -77,11 +118,26 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
             }
 
             var acontecer = await _context.Acontecers.FindAsync(id);
+
+            var obj = new AcontecersViewModel
+            {
+                ImageUrl = acontecer.ImageUrl,
+                Estado = acontecer.Estado,
+                Informacion = acontecer.Informacion,
+                Titulo = acontecer.Titulo,
+                Fecha = acontecer.Fecha,
+                Descripcion = acontecer.Descripcion,
+                Encabezado = acontecer.Encabezado,
+                Estudiantes = acontecer.Estudiantes,
+                Lugar = acontecer.Lugar
+
+            };
+
             if (acontecer == null)
             {
                 return NotFound();
             }
-            return View(acontecer);
+            return View(obj);
         }
 
         // POST: Admin/Acontecers/Edit/5
@@ -89,7 +145,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Encabezado,Informacion,Descripcion,Lugar,Fecha,Estado,ImageUrl")] Acontecer acontecer)
+        public async Task<IActionResult> Edit(int id, AcontecersViewModel acontecer)
         {
             if (id != acontecer.Id)
             {
@@ -100,8 +156,52 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(acontecer);
+
+                    var path = string.Empty;
+
+                    if (acontecer.ImageFile != null && acontecer.ImageFile.Length > 0)
+                    {
+                        var guid = Guid.NewGuid().ToString();
+                        var file = $"{guid}.jpg";
+
+                        path = Path.Combine(
+                            Directory.GetCurrentDirectory(),
+                            "wwwroot\\images\\Acontecer",
+                            file);
+
+
+
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            await acontecer.ImageFile.CopyToAsync(stream);
+                        }
+
+                        path = $"~/images/Acontecer/{file}";
+                    }
+
+
+                    var obj = new Acontecer
+                    {
+                        Id = acontecer.Id,
+                        Estado = acontecer.Estado,
+                        Informacion = acontecer.Informacion,
+                        ImageUrl = path,
+                        Titulo = acontecer.Titulo,
+                        Descripcion = acontecer.Descripcion,
+                        Encabezado = acontecer.Encabezado,
+                        Estudiantes = acontecer.Estudiantes,
+                        Fecha = acontecer.Fecha,
+                        Lugar = acontecer.Lugar
+                    };
+
+
+
+
+                    _context.Update(obj);
                     await _context.SaveChangesAsync();
+
+
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -143,7 +243,8 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var acontecer = await _context.Acontecers.FindAsync(id);
-            _context.Acontecers.Remove(acontecer);
+            acontecer.Estado = false;
+            _context.Acontecers.Update(acontecer);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

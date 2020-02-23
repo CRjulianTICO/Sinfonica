@@ -230,6 +230,42 @@ namespace Sinfonica.Web.Migrations
                     b.ToTable("Conjuntos");
                 });
 
+            modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Contacto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Host");
+
+                    b.Property<string>("Password");
+
+                    b.Property<int?>("Puerto");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacto");
+                });
+
+            modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Correo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Mensaje");
+
+                    b.Property<string>("Nombre");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Correos");
+                });
+
             modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Costo", b =>
                 {
                     b.Property<int>("Id")
@@ -244,12 +280,11 @@ namespace Sinfonica.Web.Migrations
 
                     b.Property<DateTime>("FechaLim2Sem");
 
-                    b.Property<string>("Informacion")
-                        .IsRequired();
+                    b.Property<string>("Informacion");
 
                     b.Property<double>("Matricula");
 
-                    b.Property<int>("ProgramasId");
+                    b.Property<int?>("ProgramasId");
 
                     b.HasKey("Id");
 
@@ -783,8 +818,7 @@ namespace Sinfonica.Web.Migrations
                 {
                     b.HasOne("Sinfonica.Web.Areas.Admin.Data.Entities.Programa", "Programas")
                         .WithMany("Costos")
-                        .HasForeignKey("ProgramasId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("ProgramasId");
                 });
 
             modelBuilder.Entity("Sinfonica.Web.Areas.Admin.Data.Entities.Empleado", b =>

@@ -245,6 +245,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
 
                 var emp = new Conjunto
                 {
+                    Id = conjunto.Id,
                     NombreConjunto = conjunto.NombreConjunto,
                     Informacion = conjunto.Informacion,
                     Estado = conjunto.Estado,

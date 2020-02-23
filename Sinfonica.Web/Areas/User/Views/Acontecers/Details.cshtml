@@ -1,0 +1,116 @@
+﻿@model Sinfonica.Web.Areas.Admin.Data.Entities.Acontecer
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<link rel="stylesheet" type="text/css" href="~/css/news_post_styles.css">
+<link rel="stylesheet" type="text/css" href="~/css/news_post_responsive.css">
+
+
+<div class="home">
+    <div class="home_background_container prlx_parent">
+        <div class="home_background prlx" style="background-image:url(/images/news_background.jpg);"></div>
+    </div>
+    <div class="home_content">
+        <h1>Acontecer</h1>
+    </div>
+</div>
+
+<!---->
+<div class="news">
+    <div class="container">
+
+        <div class="row">
+
+            <!-- News Post Column -->
+
+            <div class="col-lg-12">
+
+                <div class="news_post_container">
+                    <!-- News Post -->
+                    <div class="news_post">
+                        <div class="news_post_image">
+                            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                            {
+                                <img src="@Url.Content(Model.ImageUrl)" alt="Image" />
+                            }
+                        </div>
+                        <div class="news_post_top d-flex flex-column flex-sm-row">
+                            <div class="news_post_date_container">
+                                <div class="news_post_date d-flex flex-column align-items-center justify-content-center">
+                                    <div>@Model.Fecha.Day</div>
+                                    <div>@Model.MonthShortName</div>
+                                </div>
+                            </div>
+
+                            <div class="news_post_title_container">
+                                <div class="news_post_title">
+                                    <a>@Model.Titulo</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                       
+
+
+
+
+
+
+                    </div>
+                    
+                    <hr />
+                    <br />
+
+                    <div class="sidebar_section_title">
+                        <h3> @Model.Lugar a las @Model.Fecha.ToString(" hh:mm tt")</h3>
+                        Publicado por: @Model.Estudiantes.NombreCompleto
+                    </div>
+
+
+                    <div class="news_post_text">
+                        <h2> @Model.Encabezado </h2>
+                    </div>
+
+
+
+
+                    <p class="news_post_text">@Model.Descripcion</p>
+
+
+                    <p class="news_post_text" style="margin-top: 59px;">@Model.Informacion </p>
+                </div>
+
+                </div>
+
+
+
+
+
+
+                <!---->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+        <script src="~/js/jquery-3.2.1.min.js"></script>
+
+        <script src="~/css/bootstrap4/popper.js"></script>
+        <script src="~/css/bootstrap4/bootstrap.min.js"></script>
+        <script src="~/plugins/greensock/TweenMax.min.js"></script>
+        <script src="~/plugins/greensock/TimelineMax.min.js"></script>
+        <script src="~/plugins/scrollmagic/ScrollMagic.min.js"></script>
+        <script src="~/plugins/greensock/animation.gsap.min.js"></script>
+        <script src="~/plugins/greensock/ScrollToPlugin.min.js"></script>
+        <script src="~/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+        <script src="~/plugins/scrollTo/jquery.scrollTo.min.js"></script>
+        <script src="~/plugins/easing/easing.js"></script>
+        <script src="~/js/custom.js"></script>
+        <script src="~/js/videobg.js"></script>

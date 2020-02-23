@@ -21,56 +21,66 @@
                 
                 </div>
                 <div class="box-body">
-                      <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Encabezado)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Encabezado)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Informacion)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Informacion)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Lugar)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Lugar)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Fecha)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Fecha)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ImageUrl)
-        </dd>
-    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Titulo)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Titulo)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Encabezado)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Encabezado)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Informacion)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Informacion)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Descripcion)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Lugar)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Lugar)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Fecha)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Fecha)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Estudiantes)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Estudiantes.NombreCompleto) Carnet: @Html.DisplayFor(model => model.Estudiantes.Carnet)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Estado)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Estado)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ImageUrl)
+                        </dt>
+                        <dd>
+                            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                            {
+                                <img src="@Url.Content(Model.ImageUrl)" alt="Image" style="width:100px;height:150px;max-width: 100%; height: auto;" />
+                            }
+                            
+                        </dd>
+                    </dl>
                 </div>
             </div>
         </div>

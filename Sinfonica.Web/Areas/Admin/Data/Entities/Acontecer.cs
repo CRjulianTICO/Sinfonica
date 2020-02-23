@@ -10,19 +10,19 @@ namespace Sinfonica.Web.Areas.Admin.Data.Entities
     public class Acontecer : IEntity
     {
         public int Id { get; set; }
-        [Required]
+        
         public String Titulo { get; set; }
-        [Required]
+        
         public String Encabezado { get; set; }
-        [Required]
+        
         public String Informacion { get; set; }
-        [Required]
+        
         public String Descripcion { get; set; }
-        [Required]
+        
         public String Lugar { get; set; }
-        [Required]
+        
         public DateTime Fecha { get; set; }
-        [Required]
+       
         public Boolean Estado { get; set; }
 
         public Estudiante Estudiantes { get; set; }

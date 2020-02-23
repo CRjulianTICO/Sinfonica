@@ -23,7 +23,7 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
         // GET: Admin/Estudiantes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Estudiantes.ToListAsync());
+            return View(await _context.Estudiantes.Where(e => e.Estado == true).ToListAsync());
         }
 
         // GET: Admin/Estudiantes/Details/5
@@ -141,7 +141,8 @@ namespace Sinfonica.Web.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var estudiante = await _context.Estudiantes.FindAsync(id);
-            _context.Estudiantes.Remove(estudiante);
+            estudiante.Estado = false;
+            _context.Estudiantes.Update(estudiante);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

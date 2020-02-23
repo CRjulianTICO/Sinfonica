@@ -30,5 +30,18 @@ namespace Sinfonica.Web.Areas.Admin.Helpers
 
         Task<bool> IsUserInRoleAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user, string roleName);
 
+
+
+        Task<string> GenerateEmailConfirmationTokenAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user);
+
+        Task<IdentityResult> ConfirmEmailAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user, string token);
+
+        Task<Sinfonica.Web.Areas.Admin.Data.Entities.User> GetUserByIdAsync(string userId);
+
+        Task<string> GeneratePasswordResetTokenAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user);
+
+        Task<IdentityResult> ResetPasswordAsync(Sinfonica.Web.Areas.Admin.Data.Entities.User user, string token, string password);
+
+
     }
 }

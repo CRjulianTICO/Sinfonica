@@ -22,33 +22,36 @@
 
                 <table id="datatable" class="display responsive nowrap dataTable no-footer dtr-inline collapsed table table-bordered table-striped">
                      <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Titulo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Encabezado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Informacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Lugar)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fecha)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th></th>
-        </tr>
+                         <tr>
+                             <th>
+                                 @Html.DisplayNameFor(model => model.Titulo)
+                             </th>
+                             <th>
+                                 @Html.DisplayNameFor(model => model.Encabezado)
+                             </th>
+                             <th>
+                                 @Html.DisplayNameFor(model => model.Informacion)
+                             </th>
+                             <th>
+                                 @Html.DisplayNameFor(model => model.Descripcion)
+                             </th>
+                             <th>
+                                 @Html.DisplayNameFor(model => model.Lugar)
+                             </th>
+                             <th>
+                                 @Html.DisplayNameFor(model => model.Fecha)
+                             </th>
+                             <th>
+                                 @Html.DisplayNameFor(model => model.Estudiantes)
+                             </th>
+                             <th>
+                                 @Html.DisplayNameFor(model => model.Estado)
+                             </th>
+                             <th>
+                                 @Html.DisplayNameFor(model => model.ImageUrl)
+                             </th>
+                             <th></th>
+                         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
@@ -72,10 +75,16 @@
                 @Html.DisplayFor(modelItem => item.Fecha)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Estudiantes.NombreCompleto)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
+                @if (!string.IsNullOrEmpty(item.ImageUrl))
+                {
+                    <img src="@Url.Content(item.ImageUrl)" alt="Image" style="width:100px;height:150px;max-width: 100%; height: auto;" />
+                }
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

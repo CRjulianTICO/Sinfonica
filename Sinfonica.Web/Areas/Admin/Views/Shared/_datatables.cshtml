@@ -1,8 +1,16 @@
-﻿@section ScriptsDt {
-    <script src="~/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="~/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+﻿<link rel="stylesheet" type="text/css" href="~/lib/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+
+
+
+@section ScriptsDt {
+
+    <script src="~/js/jquery-3.2.1.min.js"></script>
+
+    <script src="~/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script>
+    <script type="text/javascript">
         $(function () {
 
             $('#datatable').DataTable({
@@ -38,9 +46,6 @@
     </script>
 }
 
-@section StylesDt {
-    <link rel="stylesheet" href="~/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
-}
 
-<h5>HOALASDKJASNDKJSAKNDKSANND</h5>
+
+
